@@ -26,10 +26,8 @@ function getStockData (ticker){
 
     var apiKey = "YYN6L1UF6A17ZCV3";
     var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=full&symbol="
-    // var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=
     + ticker + "&out&apikey=" + apiKey;
 
-    // https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&outputsize=full&apikey=demo
 
     fetch(apiUrl).then(function(response) {
         // request was successful
