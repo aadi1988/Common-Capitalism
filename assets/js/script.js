@@ -106,3 +106,4 @@ function company(){
 }
 
 drawChart();
+company();
