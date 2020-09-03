@@ -84,3 +84,4 @@ function company(){
 }
 
 drawChart();
+company();
