@@ -105,5 +105,6 @@ function company(){
   })      
 }
 
-drawChart();
+
 company();
+drawChart();
