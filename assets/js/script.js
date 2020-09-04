@@ -4,28 +4,37 @@ google.charts.setOnLoadCallback(this.drawChart.bind(this));
 var priceData = [];
 var parsedData = [];
 
-function parseDailyPriceData(data){
+function parsePriceData(data){
 
-    tsData = data["Time Series (Daily)"];
+    // tsData = data["Time Series (Daily)"];
+    tsData = data["Weekly Adjusted Time Series"];
     tsDataKeys = Object.keys(tsData);
-    tsDataSize = Object.keys(tsData).length;
+    tsDataKeysConv = [];
 
-    for (i = 0; i < tsDataSize; i++){
-        
-        datePriceAr = [tsDataKeys[i], Number(tsData[tsDataKeys[i]]["5. adjusted close"])];
-        parsedData[tsDataSize-1-i] = datePriceAr;
+    for (i = 0; i < tsDataKeys.length; i++){
+      aDate = moment(tsDataKeys[i]);
+      if (aDate.year() == 2020){
+        tsDataKeysConv.push(aDate);
+      };
+    };
 
+    for (i = 0; i < tsDataKeysConv.length; i++){
+      // datePriceAr = [tsDataKeys[i], Number(tsData[tsDataKeys[i]]["5. adjusted close"])];
+      date = tsDataKeysConv[i];
+      price = Number(tsData[tsDataKeysConv[i].format("YYYY-MM-DD")]["5. adjusted close"]);
+      datePriceAr = [date, price];
+      parsedData[tsDataKeysConv.length-1-i] = datePriceAr;
     };
 
     console.log(parsedData);
     drawChart();
-
 }
 
 function getStockData (ticker){
 
     var apiKey = "YYN6L1UF6A17ZCV3";
-    var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=full&symbol="
+    //var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=full&symbol="
+    var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol="
     + ticker + "&out&apikey=" + apiKey;
 
 
@@ -33,12 +42,8 @@ function getStockData (ticker){
         // request was successful
         if (response.ok) {
             response.json().then(function(data) {
-                
-                console.log("we got this far into getStockData...");
-                // ###NEED A PARSING or plotting FUNCTION###
                 console.log(data);
-                parseDailyPriceData(data);
-
+                parsePriceData(data);
             });
         }
         else {
