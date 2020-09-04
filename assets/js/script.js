@@ -90,11 +90,15 @@ function company(){
                  console.log(data.articles[0].description);
                  console.log(data.articles[0].title);
                  console.log(data.articles[0].url);
-                 $("#news").append($("<a href= \"" + data.articles[0].url + "\"" + ">" + data.articles[0].title + "</a>"));
-                 $("#news").append($("<img src='" + data.articles[0].image + "' id='news-img'>"));
+                 console.log(data.articles[0].publishedAt);
+                 var date = moment(data.articles[0].publishedAt).format("DD MMM YYYY");
+                 $("#news-date").text(date);
+                 $("#news").append($("<p>" + data.articles[0].title + "</p>"));
                  
-                 $("#news").append($("<p>" + data.articles[0].description + "</p>"));
-
+                // $("#news").append($("<img src='" + data.articles[0].image + "' id='news-img'>"));
+                 
+                 $("#news").append($("<a href= \"" + data.articles[0].url + "\" id=\"news-read-more\">Read More</a>"));
+                 
             })
         }
    })      
