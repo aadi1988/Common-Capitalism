@@ -1,19 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Page</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <title>Document</title>
 </head>
-<body>
-    <a>The financial asset price page!</a>
+<style>
+    body {
+        background-color: white;
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+    h3,
+    h2,
+    p {
+        margin: 0px;
+    }
 
-    <div id="chart_div" style="width: 900px; height: 500px"></div>
-    <div id="news"></div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+    a {
+        color: black;
+        list-style: none;
+        text-decoration: none;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 14px;
+    }
+    header{
+    top: 0;
+    left: 0;
+    display: flex;
+    position: fixed;
+    background: white;
+    width: 100%;
+    padding: 15px 60px;
+    }
+    .btn_std {
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+    .min_left {
+        position: fixed;
+        right: 130px;
+    }
+    .rattings {
+        border: 1px solid black;
+        width: 18%;
+        height: 100px;
+        border-radius: 64%;
+    }
+    .rcorners1 {
+    border-radius: 500px;
+    background: #73AD21;
+    width: 134px;
+    height: 134px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    }
+</style>
+
+<body>
+
+    <header style="display: flex;position: fixed; background:white; width: 100%;">
+        <div style="width: 65%;">
+            <div style="display: flex; ">
+                <h3 style="margin-right: 100px;">logo</h3>
+                <form action="/action_page.php">
+                    <input type="search" id="gsearch" name="gsearch" placeholder="search"
+                        style="width: 400px; height: 30px;">
+                </form>
+            </div>
+        </div>
+        <div style="width: 30%;">
+            <ul style="display: flex; list-style: none; padding: 0px; margin: 0px;">
+                <li><a href="#">learn</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Carrears</a></li>
+                <li> <a href="#">Help</a></li>
+                <li><a href="#">Log in</a></li>
+                <li><a href="#">Sing up</a></li>
+            </ul>
+        </div>
+        
+    </header>
+    <div class="mein_boed" style="display:flex">
+        <div class="main_hed" style="width: 65%;">
+           
+            <div class="btn_std">
+                <button type="button" style="font-size: 13px;">Social media</button>
+                <button type="button" style="font-size: 13px;">100 most popular</button>
+                <button type="button" style="font-size: 13px;">most popular under
+                    $25</button>
+                <h2 style="margin-top: 30px; font-size: 32px;">Snap</h2>
+                <h2 style="font-size: 32px;">US$23.65</h2>
+                <p style="font-size: 13px;">+US$1.12 (+5.00%) To (+5.00%)</p>
+            </div>
+            <div class="1d" style="margin-top: 280px;">
+                <hr>
+                <ul style="list-style: none; display: flex;margin: 0;padding: 0;">
+                    <li>1d</li>
+                    <li style="padding-left: 30px; font-size: 13px;">1w</li>
+                    <li style="padding-left: 30px; font-size: 13px;">1m</li>
+                    <li style="padding-left: 30px; font-size: 13px;">3m</li>
+                    <li style="padding-left: 30px; font-size: 13px;">1y</li>
+                    <li style="padding-left: 30px; font-size: 13px;">5y</li>
+                </ul>
+                <hr>
+            </div>
+            <div class="box-photo"
+                style="width:80%; display: flex; border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
+                <h3 style="margin: 30px;">photo</h3>
+                <div>
+                    <span style="font-size: 13px;">Why Robinhood?</span>
+                    <p style="margin-top: 10px; margin-bottom: 25px; font-size: 16px;">
+                        You can buy or sell Snap and other stocks, options, ETFs, and crypto commission-free!
+                    </p>
+                    <a href="#" style="font-size: 15px; color: #73AD21; padding: 0px;">Sign up for free</a>
+                </div>
+            </div>
+            <div class="about-span" style="margin-top: 50px;">
+                <h2>About SNAP</h2>
+                <hr>
+                <p style="width: 600px; margin-top: 30px; font-size: 15px;">Snap, Inc. engages in the operation of its
+                    camera platform.
+                    Its
+                    products include
+                    Snapchat, using the camera
+                    and editing
+                    tools to take and share Snaps, Friends Page, which lets users create and use Stories, Groups, Video
+                    and
+                    Chat, Discover
+                    for searching and surfacing relevant Stories, Snap Map, which shows friends, Stories and Snaps near
+                    the
+                    user, Memories,
+                    for saving personal collections, and Spectacles, wearable sunglasses capable of taking Snaps and
+                    interacting
+                    directly
+                    with the Snapchat application. Read More</p>
+            </div>
+            <div style="display: flex;">
+                <div style="font-size: 13px; font-weight: 700;">
+                    <ul style="list-style: none; margin-top: 50px; padding: 0px;">
+                        <li style="margin-bottom: 15px;">CEO
+                            <p style="font-weight: 500; margin-top: 5px;">Evan Thomas Spiegel</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">Market Cap
+                            <p style="font-weight: 500; margin-top: 5px;">34.57B</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">High Today
+                            <p style="font-weight: 500; margin-top: 5px;">US$23.56</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">52 Week High
+                            <p style="font-weight: 500; margin-top: 5px;">US$26.76</p>
+                        </li>
+                    </ul>
+                </div>
+                <div style="font-size: 13px; font-weight: 700;">
+                    <ul style="list-style: none; margin-top: 50px;">
+                        <li style="margin-bottom: 15px;">Employees
+                            <p style="font-weight: 500; margin-top: 5px;">3,195</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">Price-Earnings Ratio
+                            <p style="font-weight: 500; margin-top: 5px;">--</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">Low Today
+                            <p style="font-weight: 500; margin-top: 5px;">US$22.39</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">52 Week Low
+                            <p style="font-weight: 500; margin-top: 5px;">US$7.89</p>
+                        </li>
+                    </ul>
+                </div>
+                <div style="font-size: 13px; font-weight: 700;">
+                    <ul style="list-style: none; margin-top: 50px; ">
+                        <li style="margin-bottom: 15px;">Headquarters
+                            <p style="font-weight: 500; margin-top: 5px;">Santa Monica, California</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">High Today
+                            <p style="font-weight: 500; margin-top: 5px;">--</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">Open Price
+                            <p style="font-weight: 500; margin-top: 5px;">US$22.55</p>
+                        </li>
+                    </ul>
+                </div>
+                <div style="font-size: 13px; font-weight: 700;">
+                    <ul style="list-style: none; margin-top: 50px;">
+                        <li style="margin-bottom: 15px;">Founded
+                            <p style="font-weight: 500; margin-top: 5px;">2010</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">Average Volume
+                            <p style="font-weight: 500; margin-top: 5px;">18.72M</p>
+                        </li>
+                        <li style="margin-bottom: 15px;">Volume
+                            <p style="font-weight: 500; margin-top: 5px;">40.14M</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="Collections" style="margin-top: 50px;">
+                <h2>Collections</h2>
+                <hr>
+                <div style="margin-top: 30px;">
+                    <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Social Media</butto>
+                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Watch100 Most
+                            Popular</button>
+                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Most Popular Under
+                            $25</button>
+                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Technology</button>
+                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Media</button>
+                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Internet</button>
+                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">2017 IPO</button>
+                </div>
+            </div>
+            <div class="Digestible Financial News" style="margin-top: 70px;">
+                <h2>Digestible Financial News</h2>
+                <hr>
+                <div style="display: flex; margin-top: 30px;">
+                    <div>
+                        <img src="img/man1.jpg" alt=""
+                            style="height: 60px;width: 60px; border-radius: 50px;">
+                        <img src="img/man2.jpg" alt=""
+                            style="height: 60px;width: 60px; border-radius: 50px;">
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 15px;">Jack Kramer & Nick Martell
+                        </h3>
+                        <p style="font-size: 13px;">Managing Editors of News & Snacks at Robinhood Financial LLC</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;">
+                <div
+                    style="border: 1px solid black; border-radius: 5px; width: 30%; padding: 15px; margin-right: 15px; margin-top: 30px;">
+                    <span style="color: rgb(121,133,139); font-size: 13px;">29 Jul 2020</span>
+                    <p style="font-size: 15px; margin-top: 10px; margin-bottom: 10px;">
+                        Facebook will pay TikTok stars to post on Instagram Reels (its new TikTok knock-off)
+                    </p>
+                    <span style="color:rgb(0, 200, 5); font-size: 13px;">Read More</span>
+                </div>
+                <div
+                    style="border: 1px solid black; border-radius: 5px; width: 30%; padding: 15px; margin-right: 15px; margin-top: 30px;">
+                    <span style="color: rgb(121,133,139); font-size: 13px;">29 Jul 2020</span>
+                    <p style="font-size: 15px; margin-top: 10px; margin-bottom: 10px;">
+                        Facebook will pay TikTok stars to post on Instagram Reels (its new TikTok knock-off)
+                    </p>
+                    <span style="color:rgb(0, 200, 5); font-size: 13px;">Read More</span>
+                </div>
+                <div
+                    style="border: 1px solid black; border-radius: 5px; width: 30%; padding: 15px; margin-right: 15px; margin-top: 30px;">
+                    <span style="color: rgb(121,133,139); font-size: 13px;">29 Jul 2020</span>
+                    <p style="font-size: 15px; margin-top: 10px; margin-bottom: 10px;">
+                        Facebook will pay TikTok stars to post on Instagram Reels (its new TikTok knock-off)
+                    </p>
+                    <span style="color:rgb(0, 200, 5);  font-size: 13px;">Read More</span>
+                </div>
+            </div>
+            <!-- <div class="snap news"style="margin-top: 70px;">
+                <h2>SNAP NEWS</h2>
+                <hr>
+                <div style="padding: 20px; display: flex; margin-top: 30px;">
+                <div style="width: 70%; margin-top: 23px;">
+                    <span style="font-size: 13px; ">Fortune 2sep</span>
+                <br>
+                <h3 style=" margin-top: 10px; margin-bottom: 10px;">Vanessa Guthrie | 2020 40 under 40 in Tech</h3>
+                <p style="font-size: 13px;">Vanessa Guthrie is at the forefront of Snap Inc.’s efforts to develop </p>
+                </div>
+                <div style="width: 30%;">
+                    <img src="img/woman.webp" style="height: 130px; width: 100%;" alt="">
+                </div>
+                </div>
+                <div style="padding: 20px; display: flex; margin-top: 30px;">
+                    <div style="width: 70%; margin-top: 23px;">
+                        <span style="font-size: 13px; ">Fortune 2sep</span>
+                    <br>
+                    <h3 style=" margin-top: 10px; margin-bottom: 10px;">Vanessa Guthrie | 2020 40 under 40 in Tech</h3>
+                    <p style="font-size: 13px;">Vanessa Guthrie is at the forefront of Snap Inc.’s efforts to develop </p>
+                    </div>
+                    <div style="width: 30%;">
+                        <img src="img/snap.jpg" style="width: 100%; height: 130px;" alt="">
+                    </div>
+                    </div>
+            </div> -->
+
+            <div style="margin-top: 70px;">
+                <h2>Analyst Ratings</h2>
+                <hr>
+            </div>
+            <div style="display: flex; align-items: center; margin-top: 30px;">
+                <div style="width: 30%;">
+                    <div class="rcorners1">
+                        <p style="text-align: center; padding: 32px;">
+                            61% <br>
+                            of 38 ratings
+                        </p>
+                    </div>
+                </div>
+                <div style="width: 50%;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span>Buy</span>
+                        <div style="background: #000;border-radius: 5px; margin-left: 10px;   width: 100%; height: 6px;"></div>  
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span>Hold</span>
+                        <div style="background: #000;border-radius: 5px; margin-left: 10px;   width: 100%; height: 6px;"></div>  
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span>Sell</span>
+                        <div style="background: #000;border-radius: 5px; margin-left: 10px;   width: 100%; height: 6px;"></div>  
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <div style="margin-top: 70px; margin-bottom: 200px;">
+                <h2>SNAP Earnings</h2>
+                <hr>
+            </div>
+            <div style="margin-top: 70px;">
+                <h2>You May Also Like</h2>
+                <hr>
+            </div>
+            <div style="margin-top: 30px;">
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">ESGRO</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">NTCO</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">FSV</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">QIWI</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">CLB</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">MQT</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">ABUS</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">HPR</button>
+                <br>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">SBT</button>
+                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">VISL</button>
+            </div>
+            <div style="margin-top: 60px; font-size: 13px;">
+                <p style="font-size: 16px;">Robinhood Snacks newsletters and podcasts reflect the opinions of only the authors who are associated
+                    persons of
+                    Robinhood Financial LLC and do not reflect the views of Robinhood Markets, Inc. or any of its
+                    subsidiaries or
+                    affiliates. They are meant for informational purposes only, are not intended to serve as a
+                    recommendation to buy or sell
+                    any security in a self-directed Robinhood account or any other account, and are not an offer or sale
+                    of a security. They
+                    are also not research reports and are not intended to serve as the basis for any investment
+                    decision. Any third-party
+                    information provided therein does not reflect the views of Robinhood Markets, Inc., Robinhood
+                    Financial LLC, or any of
+                    their subsidiaries or affiliates. All investments involve risk and the past performance of a
+                    security or financial
+                    product does not guarantee future results or returns. Keep in mind that while diversification may
+                    help spread risk, it
+                    does not assure a profit or protect against loss. There is always the potential of losing money when
+                    you invest in
+                    securities or other financial products. Investors should consider their investment objectives and
+                    risks carefully before
+                    investing. The price of a given security may increase or decrease based on market conditions and
+                    customers may lose
+                    money, including their original investment. Robinhood Financial LLC, member FINRA/SIPC.</p>
+                <br>
+
+                <p style="font-size: 16px; margin-bottom: 30px;">All investments involve risk and the past performance of a security, or financial product does not
+                    guarantee future
+                    results or returns. Securities offered through Robinhood Financial LLC, member FINRA/SIPC. To learn
+                    more about the
+                    information provided on this page, please see our <b>Web Disclosures</b>.</p>
+            </div>
+        </div>
+
+        <div class="min_left" style="width:25%">
+            <div class="bos_sed" style="margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
+                <h3 style="margin: 15px; font-size: 15px;">Buy SNAP</h3>
+                <hr>
+                <div style="display: flex; font-size: 13px;">
+                    <ul style="list-style: none; margin-bottom: 0px;">
+                        <li style="margin-bottom: 14px;">Shares</li>
+                        <li style="margin-bottom: 14px;">Market Price</li>
+                        <li style="margin-bottom: 14px;">Commissions</li>
+                    </ul>
+                    <ul style="list-style: none; margin-bottom: 0px;">
+                        <li style="margin-bottom: 14px;"><button type="button">0</button></li>
+                        <li style="margin-bottom: 14px;"> US$23.65</li>
+                        <li style="margin-bottom: 14px;">US$0.00</li>
+                    </ul>
+                </div>
+                <hr>
+                <div style="display: flex; font-size: 13px;">
+                    <ul style="list-style: none; margin-bottom: 0px;">
+                        <li style="margin-bottom: 14px;">Estimated Cost</li>
+                    </ul>
+                    <ul style="list-style: none; margin-bottom: 0px;">
+                        <li style="margin-bottom: 14px;">US$0.00</li>
+                    </ul>
+                </div>
+                <p style=" text-align: center; font-size: 13px;">
+                    Sign up for a Robinhood Account to buy or sell Snap stock and options commission-free.
+                </p>
+                <div style="text-align: center; margin-top: 30px; font-size: 13px;">
+                    <button type="button">Sign Up to Buy</button>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button type="button" style="font-size: 13px; margin-top: 30px; width: 50%;">Trade SNAP Options</button>
+            </div>
+            <div style="text-align: center;">
+                <button type="button" style="font-size: 13px; margin-top: 30px; width: 50%;">Watch SNAP</button>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
