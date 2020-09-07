@@ -5,68 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-<style>
-    body {
-        background-color: white;
-        margin-left: 60px;
-        margin-right: 60px;
-    }
-    h3,
-    h2,
-    p {
-        margin: 0px;
-    }
-
-    a {
-        color: black;
-        list-style: none;
-        text-decoration: none;
-        padding-left: 10px;
-        padding-right: 10px;
-        font-size: 14px;
-    }
-    header{
-    top: 0;
-    left: 0;
-    display: flex;
-    position: fixed;
-    background: white;
-    width: 100%;
-    padding: 15px 60px;
-    }
-    .btn_std {
-        margin-top: 80px;
-        margin-bottom: 30px;
-    }
-    .min_left {
-        position: fixed;
-        right: 130px;
-    }
-    .rattings {
-        border: 1px solid black;
-        width: 18%;
-        height: 100px;
-        border-radius: 64%;
-    }
-    .rcorners1 {
-    border-radius: 500px;
-    background: #73AD21;
-    width: 134px;
-    height: 134px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    }
-</style>
 
 <body>
 
     <header style="display: flex;position: fixed; background:white; width: 100%;">
         <div style="width: 65%;">
             <div style="display: flex; ">
-                <h3 style="margin-right: 100px;">logo</h3>
+
                 <form action="/action_page.php">
                     <input type="search" id="gsearch" name="gsearch" placeholder="search"
                         style="width: 400px; height: 30px;">
@@ -83,21 +31,20 @@
                 <li><a href="#">Sing up</a></li>
             </ul>
         </div>
-        
     </header>
+
     <div class="mein_boed" style="display:flex">
         <div class="main_hed" style="width: 65%;">
-           
-            <div class="btn_std">
-                <button type="button" style="font-size: 13px;">Social media</button>
-                <button type="button" style="font-size: 13px;">100 most popular</button>
-                <button type="button" style="font-size: 13px;">most popular under
-                    $25</button>
-                <h2 style="margin-top: 30px; font-size: 32px;">Snap</h2>
-                <h2 style="font-size: 32px;">US$23.65</h2>
-                <p style="font-size: 13px;">+US$1.12 (+5.00%) To (+5.00%)</p>
+            
+            <!-- Logo, Name, and current price go HERE!! -->
+            <h1>dummy text so log and price aren't hidden under top</h1>
+            <div id="logo-name-price">
+                <div id="logo"></div>
+                <div id="name-price"></div>
             </div>
-            <div class="1d" style="margin-top: 280px;">
+            <!-- Chart goes HERE!! -->
+            <div id ="chart_div"></div>
+            <div class="1d" style="margin-top: 10px;">
                 <hr>
                 <ul style="list-style: none; display: flex;margin: 0;padding: 0;">
                     <li>1d</li>
@@ -140,66 +87,10 @@
                     directly
                     with the Snapchat application. Read More</p>
             </div>
-            <div style="display: flex;">
-                <div style="font-size: 13px; font-weight: 700;">
-                    <ul style="list-style: none; margin-top: 50px; padding: 0px;">
-                        <li style="margin-bottom: 15px;">CEO
-                            <p style="font-weight: 500; margin-top: 5px;">Evan Thomas Spiegel</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">Market Cap
-                            <p style="font-weight: 500; margin-top: 5px;">34.57B</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">High Today
-                            <p style="font-weight: 500; margin-top: 5px;">US$23.56</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">52 Week High
-                            <p style="font-weight: 500; margin-top: 5px;">US$26.76</p>
-                        </li>
-                    </ul>
-                </div>
-                <div style="font-size: 13px; font-weight: 700;">
-                    <ul style="list-style: none; margin-top: 50px;">
-                        <li style="margin-bottom: 15px;">Employees
-                            <p style="font-weight: 500; margin-top: 5px;">3,195</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">Price-Earnings Ratio
-                            <p style="font-weight: 500; margin-top: 5px;">--</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">Low Today
-                            <p style="font-weight: 500; margin-top: 5px;">US$22.39</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">52 Week Low
-                            <p style="font-weight: 500; margin-top: 5px;">US$7.89</p>
-                        </li>
-                    </ul>
-                </div>
-                <div style="font-size: 13px; font-weight: 700;">
-                    <ul style="list-style: none; margin-top: 50px; ">
-                        <li style="margin-bottom: 15px;">Headquarters
-                            <p style="font-weight: 500; margin-top: 5px;">Santa Monica, California</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">High Today
-                            <p style="font-weight: 500; margin-top: 5px;">--</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">Open Price
-                            <p style="font-weight: 500; margin-top: 5px;">US$22.55</p>
-                        </li>
-                    </ul>
-                </div>
-                <div style="font-size: 13px; font-weight: 700;">
-                    <ul style="list-style: none; margin-top: 50px;">
-                        <li style="margin-bottom: 15px;">Founded
-                            <p style="font-weight: 500; margin-top: 5px;">2010</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">Average Volume
-                            <p style="font-weight: 500; margin-top: 5px;">18.72M</p>
-                        </li>
-                        <li style="margin-bottom: 15px;">Volume
-                            <p style="font-weight: 500; margin-top: 5px;">40.14M</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+            <!-- THIS IS WHERE THE COMPANY INFO IS DISPLAYED -->
+            <div style="display: flex;" id="company-info"></div>
+            
             <div class="Collections" style="margin-top: 50px;">
                 <h2>Collections</h2>
                 <hr>
@@ -410,6 +301,10 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
