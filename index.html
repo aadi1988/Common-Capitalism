@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Document</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
@@ -14,10 +17,18 @@
     <header style="display: flex;position: fixed; background:white; width: 100%;">
         <div style="width: 65%;">
             <div style="display: flex; ">
-
-                <form action="/action_page.php">
-                    <input type="search" id="gsearch" name="gsearch" placeholder="search"
-                        style="width: 400px; height: 30px;">
+                <h3 style="margin-right: 100px;">logo</h3>
+                <form>
+                    <div class="form-group" id="form">
+                         <div class="input-group">
+                            <input type="text" class="form-control" id="search" placeholder="Enter city">
+                            <span id="search-button">
+                                <button class="btn btn-outline-secondary bg-primary text-white" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                         </div> 
+                    </div>
                 </form>
             </div>
         </div>
@@ -68,24 +79,9 @@
                 </div>
             </div>
             <div class="about-span" style="margin-top: 50px;">
-                <h2>About SNAP</h2>
+                <h2 id="about-company"></h2>
                 <hr>
-                <p style="width: 600px; margin-top: 30px; font-size: 15px;">Snap, Inc. engages in the operation of its
-                    camera platform.
-                    Its
-                    products include
-                    Snapchat, using the camera
-                    and editing
-                    tools to take and share Snaps, Friends Page, which lets users create and use Stories, Groups, Video
-                    and
-                    Chat, Discover
-                    for searching and surfacing relevant Stories, Snap Map, which shows friends, Stories and Snaps near
-                    the
-                    user, Memories,
-                    for saving personal collections, and Spectacles, wearable sunglasses capable of taking Snaps and
-                    interacting
-                    directly
-                    with the Snapchat application. Read More</p>
+                <p id="companyDesc" style="width: 800px; margin-top: 30px; font-size: 15px;"></p>
             </div>
 
             <!-- THIS IS WHERE THE COMPANY INFO IS DISPLAYED -->
@@ -123,89 +119,8 @@
                     </div>
                 </div>
             </div>
-            <div style="display: flex;">
-                <div
-                    style="border: 1px solid black; border-radius: 5px; width: 30%; padding: 15px; margin-right: 15px; margin-top: 30px;">
-                    <span style="color: rgb(121,133,139); font-size: 13px;">29 Jul 2020</span>
-                    <p style="font-size: 15px; margin-top: 10px; margin-bottom: 10px;">
-                        Facebook will pay TikTok stars to post on Instagram Reels (its new TikTok knock-off)
-                    </p>
-                    <span style="color:rgb(0, 200, 5); font-size: 13px;">Read More</span>
-                </div>
-                <div
-                    style="border: 1px solid black; border-radius: 5px; width: 30%; padding: 15px; margin-right: 15px; margin-top: 30px;">
-                    <span style="color: rgb(121,133,139); font-size: 13px;">29 Jul 2020</span>
-                    <p style="font-size: 15px; margin-top: 10px; margin-bottom: 10px;">
-                        Facebook will pay TikTok stars to post on Instagram Reels (its new TikTok knock-off)
-                    </p>
-                    <span style="color:rgb(0, 200, 5); font-size: 13px;">Read More</span>
-                </div>
-                <div
-                    style="border: 1px solid black; border-radius: 5px; width: 30%; padding: 15px; margin-right: 15px; margin-top: 30px;">
-                    <span style="color: rgb(121,133,139); font-size: 13px;">29 Jul 2020</span>
-                    <p style="font-size: 15px; margin-top: 10px; margin-bottom: 10px;">
-                        Facebook will pay TikTok stars to post on Instagram Reels (its new TikTok knock-off)
-                    </p>
-                    <span style="color:rgb(0, 200, 5);  font-size: 13px;">Read More</span>
-                </div>
-            </div>
-            <!-- <div class="snap news"style="margin-top: 70px;">
-                <h2>SNAP NEWS</h2>
-                <hr>
-                <div style="padding: 20px; display: flex; margin-top: 30px;">
-                <div style="width: 70%; margin-top: 23px;">
-                    <span style="font-size: 13px; ">Fortune 2sep</span>
-                <br>
-                <h3 style=" margin-top: 10px; margin-bottom: 10px;">Vanessa Guthrie | 2020 40 under 40 in Tech</h3>
-                <p style="font-size: 13px;">Vanessa Guthrie is at the forefront of Snap Inc.’s efforts to develop </p>
-                </div>
-                <div style="width: 30%;">
-                    <img src="img/woman.webp" style="height: 130px; width: 100%;" alt="">
-                </div>
-                </div>
-                <div style="padding: 20px; display: flex; margin-top: 30px;">
-                    <div style="width: 70%; margin-top: 23px;">
-                        <span style="font-size: 13px; ">Fortune 2sep</span>
-                    <br>
-                    <h3 style=" margin-top: 10px; margin-bottom: 10px;">Vanessa Guthrie | 2020 40 under 40 in Tech</h3>
-                    <p style="font-size: 13px;">Vanessa Guthrie is at the forefront of Snap Inc.’s efforts to develop </p>
-                    </div>
-                    <div style="width: 30%;">
-                        <img src="img/snap.jpg" style="width: 100%; height: 130px;" alt="">
-                    </div>
-                    </div>
-            </div> -->
-
-            <div style="margin-top: 70px;">
-                <h2>Analyst Ratings</h2>
-                <hr>
-            </div>
-            <div style="display: flex; align-items: center; margin-top: 30px;">
-                <div style="width: 30%;">
-                    <div class="rcorners1">
-                        <p style="text-align: center; padding: 32px;">
-                            61% <br>
-                            of 38 ratings
-                        </p>
-                    </div>
-                </div>
-                <div style="width: 50%;">
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span>Buy</span>
-                        <div style="background: #000;border-radius: 5px; margin-left: 10px;   width: 100%; height: 6px;"></div>  
-                    </div>
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span>Hold</span>
-                        <div style="background: #000;border-radius: 5px; margin-left: 10px;   width: 100%; height: 6px;"></div>  
-                    </div>
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <span>Sell</span>
-                        <div style="background: #000;border-radius: 5px; margin-left: 10px;   width: 100%; height: 6px;"></div>  
-                    </div>
-                    
-                    
-                </div>
-            </div>
+            <div id="news" style="display: flex;"></div>
+            
             <div style="margin-top: 70px; margin-bottom: 200px;">
                 <h2>SNAP Earnings</h2>
                 <hr>
@@ -227,40 +142,7 @@
                 <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">SBT</button>
                 <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">VISL</button>
             </div>
-            <div style="margin-top: 60px; font-size: 13px;">
-                <p style="font-size: 16px;">Robinhood Snacks newsletters and podcasts reflect the opinions of only the authors who are associated
-                    persons of
-                    Robinhood Financial LLC and do not reflect the views of Robinhood Markets, Inc. or any of its
-                    subsidiaries or
-                    affiliates. They are meant for informational purposes only, are not intended to serve as a
-                    recommendation to buy or sell
-                    any security in a self-directed Robinhood account or any other account, and are not an offer or sale
-                    of a security. They
-                    are also not research reports and are not intended to serve as the basis for any investment
-                    decision. Any third-party
-                    information provided therein does not reflect the views of Robinhood Markets, Inc., Robinhood
-                    Financial LLC, or any of
-                    their subsidiaries or affiliates. All investments involve risk and the past performance of a
-                    security or financial
-                    product does not guarantee future results or returns. Keep in mind that while diversification may
-                    help spread risk, it
-                    does not assure a profit or protect against loss. There is always the potential of losing money when
-                    you invest in
-                    securities or other financial products. Investors should consider their investment objectives and
-                    risks carefully before
-                    investing. The price of a given security may increase or decrease based on market conditions and
-                    customers may lose
-                    money, including their original investment. Robinhood Financial LLC, member FINRA/SIPC.</p>
-                <br>
-
-                <p style="font-size: 16px; margin-bottom: 30px;">All investments involve risk and the past performance of a security, or financial product does not
-                    guarantee future
-                    results or returns. Securities offered through Robinhood Financial LLC, member FINRA/SIPC. To learn
-                    more about the
-                    information provided on this page, please see our <b>Web Disclosures</b>.</p>
-            </div>
-        </div>
-
+            
         <div class="min_left" style="width:25%">
             <div class="bos_sed" style="margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
                 <h3 style="margin: 15px; font-size: 15px;">Buy SNAP</h3>
@@ -301,10 +183,10 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> 
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

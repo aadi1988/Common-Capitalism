@@ -3,10 +3,11 @@ google.charts.setOnLoadCallback(drawChart);
 
 var priceData = [];
 var parsedData = [];
+var companyTicker;
 
 // Temporary variable for a Ticker to use in function calls
-theTicker = 'TSLA';
-theName = 'Tesla';
+//theTicker = 'TSLA';
+//theName = 'Tesla';
 
 
 // Draws the chart utilizing google charts
@@ -232,35 +233,58 @@ getCompanyOverview(theTicker);
 
 
 
-function company(){
-   var apiURL = "https://gnews.io/api/v3/search?q=Apple&token=4a1370f0a7607f7717fdf9a34c32933a";
+function company(ticker){
+   var apiURL = "https://gnews.io/api/v3/search?q=" + ticker + "&token=4a1370f0a7607f7717fdf9a34c32933a";
    fetch(apiURL).then(function(response){
      if(response.ok){
             response.json().then(function(data){
                  console.log(data);
-                 console.log(data.articles[0].description);
-                 console.log(data.articles[0].title);
-                 console.log(data.articles[0].url);
-                 $("#news").append($("<a href= \"" + data.articles[0].url + "\"" + ">" + data.articles[0].title + "</a>"));
-                 $("#news").append($("<img src='" + data.articles[0].image + "' id='news-img'>"));
+                 for (i=0; i<3; i++){
+                    var date = moment(data.articles[i].publishedAt).format("DD MMM YYYY");
+                 
+                    var insideDiv = $("<div id='insideNews'></div>");
+                    var newsDate = $("<span id='news-date'>" + date +"</span>");
+                    //console.log(newsDate);
+                    //$("#news").append(insideDiv);
+                    $(insideDiv).append($(newsDate));
+                    $(insideDiv).append($("<p>" + data.articles[i].title + "</p>"));
+                    
+                   // $("#news").append($("<img src='" + data.articles[0].image + "' id='news-img'>"));
+                    
+                    $(insideDiv).append($("<a href= \"" + data.articles[i].url + "\" id=\"news-read-more\">Read More</a>"));
+                    $("#news").append(insideDiv);
+                 
+                }
                  
                  $("#news").append($("<p>" + data.articles[0].description + "</p>"));
 
             })
         }
    })      
-  
-  //Temporarily commented out...
-  //  var api = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=MSFT&apikey=30XHMOERS2D9UT96";
-  //  fetch(api).then(function(response){
-  //   if(response.ok){
-  //          response.json().then(function(data){
-  //               console.log(data);
-  //               console.log(data.Description);
-  //          })
-  //      }
-  // })      
+
+   var api = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + ticker + "&apikey=30XHMOERS2D9UT96";
+   fetch(api).then(function(response){
+    if(response.ok){
+           response.json().then(function(data){
+                console.log(data);
+                console.log(data.Description);
+                console.log(data.Name);
+                console.log($("#companyDesc"));
+                $("#about-company").text(data.Name);
+                $("#companyDesc").text(data.Description);
+           })
+       }
+  })      
 }
 
-
-company();
+$("#search-button").on('click',function(){
+    var ticker = $("#search").val();
+    console.log(ticker);
+    company(ticker);
+    var theName = "Apple";
+    getStockDataWeekly(ticker);
+    getCompanyLogo(theName);
+    getStockDataDay(ticker);
+    getCompanyOverview(ticker);
+    
+})
