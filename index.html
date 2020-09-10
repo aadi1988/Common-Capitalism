@@ -17,7 +17,7 @@
     <header style="display: flex;position: fixed; background:white; width: 100%;">
         <div style="width: 65%;">
             <div style="display: flex; ">
-                <h3 style="margin-right: 100px;">logo</h3>
+                
                 <form>
                     <div class="form-group" id="form">
                          <div class="input-group">
@@ -57,27 +57,9 @@
             <div id ="chart_div"></div>
             <div class="1d" style="margin-top: 10px;">
                 <hr>
-                <ul style="list-style: none; display: flex;margin: 0;padding: 0;">
-                    <li>1d</li>
-                    <li style="padding-left: 30px; font-size: 13px;">1w</li>
-                    <li style="padding-left: 30px; font-size: 13px;">1m</li>
-                    <li style="padding-left: 30px; font-size: 13px;">3m</li>
-                    <li style="padding-left: 30px; font-size: 13px;">1y</li>
-                    <li style="padding-left: 30px; font-size: 13px;">5y</li>
-                </ul>
-                <hr>
+                
             </div>
-            <div class="box-photo"
-                style="width:80%; display: flex; border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
-                <h3 style="margin: 30px;">photo</h3>
-                <div>
-                    <span style="font-size: 13px;">Why Robinhood?</span>
-                    <p style="margin-top: 10px; margin-bottom: 25px; font-size: 16px;">
-                        You can buy or sell Snap and other stocks, options, ETFs, and crypto commission-free!
-                    </p>
-                    <a href="#" style="font-size: 15px; color: #73AD21; padding: 0px;">Sign up for free</a>
-                </div>
-            </div>
+            
             <div class="about-span" style="margin-top: 50px;">
                 <h2 id="about-company"></h2>
                 <hr>
@@ -87,102 +69,46 @@
             <!-- THIS IS WHERE THE COMPANY INFO IS DISPLAYED -->
             <div style="display: flex;" id="company-info"></div>
             
-            <div class="Collections" style="margin-top: 50px;">
-                <h2>Collections</h2>
-                <hr>
-                <div style="margin-top: 30px;">
-                    <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Social Media</butto>
-                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Watch100 Most
-                            Popular</button>
-                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Most Popular Under
-                            $25</button>
-                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Technology</button>
-                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Media</button>
-                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">Internet</button>
-                        <button type="button" style="margin-left: 20px; margin-top:10px; font-size: 13px;">2017 IPO</button>
-                </div>
-            </div>
-            <div class="Digestible Financial News" style="margin-top: 70px;">
-                <h2>Digestible Financial News</h2>
-                <hr>
-                <div style="display: flex; margin-top: 30px;">
-                    <div>
-                        <img src="img/man1.jpg" alt=""
-                            style="height: 60px;width: 60px; border-radius: 50px;">
-                        <img src="img/man2.jpg" alt=""
-                            style="height: 60px;width: 60px; border-radius: 50px;">
-                    </div>
-                    <div style="margin-left: 20px;">
-                        <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 15px;">Jack Kramer & Nick Martell
-                        </h3>
-                        <p style="font-size: 13px;">Managing Editors of News & Snacks at Robinhood Financial LLC</p>
-                    </div>
-                </div>
+            
+           
+            <div id ="newsHeadingDiv">
+                
             </div>
             <div id="news" style="display: flex;"></div>
             
             <div style="margin-top: 70px; margin-bottom: 200px;">
-                <h2>SNAP Earnings</h2>
+                <h2>Earnings</h2>
                 <hr>
-            </div>
-            <div style="margin-top: 70px;">
-                <h2>You May Also Like</h2>
-                <hr>
-            </div>
-            <div style="margin-top: 30px;">
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">ESGRO</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">NTCO</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">FSV</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">QIWI</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">CLB</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">MQT</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">ABUS</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">HPR</button>
-                <br>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">SBT</button>
-                <button type="button" style="margin-right:20px; font-size: 13px; margin-top:20px;">VISL</button>
+                <div id="earningChart" style="width:100%"></div>
             </div>
             
+        </div>    
         <div class="min_left" style="width:25%">
-            <div class="bos_sed" style="margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
-                <h3 style="margin: 15px; font-size: 15px;">Buy SNAP</h3>
-                <hr>
-                <div style="display: flex; font-size: 13px;">
-                    <ul style="list-style: none; margin-bottom: 0px;">
-                        <li style="margin-bottom: 14px;">Shares</li>
-                        <li style="margin-bottom: 14px;">Market Price</li>
-                        <li style="margin-bottom: 14px;">Commissions</li>
-                    </ul>
-                    <ul style="list-style: none; margin-bottom: 0px;">
-                        <li style="margin-bottom: 14px;"><button type="button">0</button></li>
-                        <li style="margin-bottom: 14px;"> US$23.65</li>
-                        <li style="margin-bottom: 14px;">US$0.00</li>
-                    </ul>
-                </div>
-                <hr>
-                <div style="display: flex; font-size: 13px;">
-                    <ul style="list-style: none; margin-bottom: 0px;">
-                        <li style="margin-bottom: 14px;">Estimated Cost</li>
-                    </ul>
-                    <ul style="list-style: none; margin-bottom: 0px;">
-                        <li style="margin-bottom: 14px;">US$0.00</li>
-                    </ul>
-                </div>
-                <p style=" text-align: center; font-size: 13px;">
-                    Sign up for a Robinhood Account to buy or sell Snap stock and options commission-free.
-                </p>
-                <div style="text-align: center; margin-top: 30px; font-size: 13px;">
-                    <button type="button">Sign Up to Buy</button>
-                </div>
+            <div class="bos_sed" id="buyShares" style="margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
+                
+                
+                
             </div>
-            <div style="text-align: center;">
-                <button type="button" style="font-size: 13px; margin-top: 30px; width: 50%;">Trade SNAP Options</button>
-            </div>
-            <div style="text-align: center;">
-                <button type="button" style="font-size: 13px; margin-top: 30px; width: 50%;">Watch SNAP</button>
-            </div>
+            
         </div>
     </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal body -->
+            <div class="modal-body">
+                
+            </div>
+          
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          
+          </div>
+       </div>
+      </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> 

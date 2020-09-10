@@ -59,7 +59,8 @@ margin: 0 auto;
     height: 200px;
 }
 
-#chart_div{
+
+#chart_div,#earningChart{
     width: 800px;
     height: 400px;
 }
@@ -102,4 +103,8 @@ margin: 0 auto;
     padding: 15px; 
     margin-right: 15px; 
     margin-top: 30px;
+}
+
+#news-heading{
+    margin: 10px;
 }
