@@ -66,8 +66,28 @@ function parsePriceDataWeekly(data){
 
 function parsePriceDataDay(data){
 
-  //var currentPrice = data[]
+      // tsData = data["Time Series (Daily)"];
+      tsData = data["Weekly Adjusted Time Series"];
+      tsDataKeys = Object.keys(tsData);
+      tsDataKeysConv = [];
+  
+      // Creates an array of dates for just 2020 to limit data size in chart
+      for (i = 0; i < tsDataKeys.length; i++){
+        aDate = moment(tsDataKeys[i]);
+        if (aDate.year() == 2020){
+          tsDataKeysConv.push(aDate);
+        };
+      };
+  
+      // Generate data set for use in Google charts API
+      for (i = 0; i < tsDataKeysConv.length; i++){
+        date = new Date(tsDataKeysConv[i].year(), tsDataKeysConv[i].month(), tsDataKeysConv[i].date());
+        price = Number(tsData[tsDataKeysConv[i].format("YYYY-MM-DD")]["5. adjusted close"]);
+        datePriceAr = [date, price];
+        parsedData[tsDataKeysConv.length-1-i] = datePriceAr;
+      };
 
+      drawChart();
 }
 
 
@@ -88,7 +108,6 @@ function getStockDataWeekly (ticker){
             console.log("There was a problem with the request")
         }
     });
-
 }
 
 
@@ -102,29 +121,20 @@ function getStockDataDay (ticker){
       // request was successful
       if (response.ok) {
           response.json().then(function(data) {
-              // parsePriceDataDaily(data);
-              console.log("justin - this is the intraday data...");
-              console.log(data);
 
+              // populate relevant data to HTML
               var dateArr = Object.keys(data["Time Series (5min)"]);
               var currentDate = dateArr[0];
               var currentPrice = data["Time Series (5min)"][currentDate]["4. close"];
-              console.log(currentPrice);
 
-              var priceEl = document.createElement("h2");
-              priceEl.textContent = currentPrice;
-              document.getElementById("name-price").append(priceEl);
-
-              var tickerEl = document.createElement("h2");
-              tickerEl.textContent = data["Meta Data"]["2. Symbol"];
-              document.getElementById("name-price").append(tickerEl);
+              $("#name-price").append("<h2>" + currentPrice + "</h2>");
+              $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
           });
       }
       else {
           console.log("There was a problem with the request")
       }
   });
-
 }
 
 
@@ -137,14 +147,14 @@ function getCompanyOverview (ticker){
   fetch(apiUrl).then(function(response){
     if(response.ok){
           response.json().then(function(data){
-
-            var coNameEl = document.createElement("h2");
-            coNameEl.textContent = data["Name"];
-            document.getElementById("name-price").append(coNameEl);
-
+            // Populate company name to page
+            $("#name-price").append("<h2>" + data['Name'] + "</h2>");
+            
+            // Create an array of selected data to facilitate looping for element creation
+            // Object is an array of objects, corresponding to columns in the HTML
             var col1 = {
               "Name": data["Name"],
-              "Address": data["Address"],
+              "Country": data["Country"],
               "Employees": data["FullTimeEmployees"]
             };
             var col2 = {
@@ -162,34 +172,24 @@ function getCompanyOverview (ticker){
               "52 Week Low": data["52WeekLow"],
               "Exchange": data["Exchange"]
             };
-          
+            
+            // final array to be looped through 
             var infoArr = [col1, col2, col3, col4];
-            console.log(infoArr);
-            console.log(infoArr.length);
 
+            // loop through array selected date to create/populate HTML elements
             for (i = 0; i < infoArr.length; i++){
 
               var keysArr = Object.keys(infoArr[i]);
-              var infoColEl = document.createElement("div");
-              infoColEl.className = "info-column";
-              var colListEl = document.createElement("ul");
-              colListEl.className = "info-list";
+              var infoColEl = $('<div></div>').addClass("info-column");
+              var colListEl = $('<ul></ul>').addClass("info-list");
 
               for (j=0; j < keysArr.length; j++){
-                var colItemEl = document.createElement("li");
-                colItemEl.textContent = keysArr[j];
-                colItemEl.className = "info-item";
-
-                var colParEl = document.createElement("p");
-                colParEl.textContent = infoArr[i][keysArr[j]];
-                colParEl.className = "info-paragraph";
-
-                colItemEl.append(colParEl);
-                colListEl.append(colItemEl);
-              };
+                $(colListEl).append("<li class='info-item'>" + keysArr[j] + "<p class='info-paragraph'>"
+                  + infoArr[i][keysArr[j]] + "</p></li>")
+                };
               
-              infoColEl.append(colListEl);
-              document.getElementById("company-info").append(infoColEl);
+              $(infoColEl).append(colListEl);
+              $('#company-info').append(infoColEl);
             };
 
           });
@@ -223,15 +223,6 @@ function getCompanyLogo (coDescription){
 
 }
 
-
-getStockDataWeekly(theTicker);
-getCompanyLogo(theName);
-getStockDataDay(theTicker);
-getCompanyOverview(theTicker);
-
-
-
-
 function company(){
    var apiURL = "https://gnews.io/api/v3/search?q=Apple&token=4a1370f0a7607f7717fdf9a34c32933a";
    fetch(apiURL).then(function(response){
@@ -250,7 +241,7 @@ function company(){
         }
    })      
   
-  //Temporarily commented out...
+  //Temporarily commented out, duplicated above...
   //  var api = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=MSFT&apikey=30XHMOERS2D9UT96";
   //  fetch(api).then(function(response){
   //   if(response.ok){
@@ -262,5 +253,11 @@ function company(){
   // })      
 }
 
+
+
+getStockDataWeekly(theTicker);
+getCompanyLogo(theName);
+getStockDataDay(theTicker);
+getCompanyOverview(theTicker);
 
 company();
