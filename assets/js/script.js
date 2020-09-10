@@ -78,9 +78,7 @@ function parsePriceDataWeekly(data){
 
 
 function parsePriceDataDay(data){
-
-  //var currentPrice = data[]
-
+  // TBD
 }
 
 
@@ -101,7 +99,6 @@ function getStockDataWeekly (ticker){
             console.log("There was a problem with the request")
         }
     });
-
 }
 
 
@@ -115,10 +112,8 @@ function getStockDataDay (ticker){
       // request was successful
       if (response.ok) {
           response.json().then(function(data) {
-              // parsePriceDataDaily(data);
-              console.log("justin - this is the intraday data...");
-              console.log(data);
 
+              // populate relevant data to HTML
               var dateArr = Object.keys(data["Time Series (5min)"]);
               var currentDate = dateArr[0];
               var currentPrice = data["Time Series (5min)"][currentDate]["4. close"];
@@ -127,20 +122,18 @@ function getStockDataDay (ticker){
               var cashBal = arr[0];
               var totalSharesBought = arr[1];
               buyShares(ticker,currentPrice,cashBal,totalSharesBought);
-              var priceEl = document.createElement("h2");
-              priceEl.textContent = currentPrice;
-              document.getElementById("name-price").append(priceEl);
+              // var priceEl = document.createElement("h2");
+              // priceEl.textContent = currentPrice;
+              // document.getElementById("name-price").append(priceEl);
 
-              var tickerEl = document.createElement("h2");
-              tickerEl.textContent = data["Meta Data"]["2. Symbol"];
-              document.getElementById("name-price").append(tickerEl);
+              $("#name-price").append("<h2>" + currentPrice + "</h2>");
+              $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
           });
       }
       else {
           console.log("There was a problem with the request")
       }
   });
-
 }
 
 
@@ -170,7 +163,7 @@ function getCompanyOverview (ticker){
 
             var col1 = {
               "Name": data["Name"],
-              "Address": data["Address"],
+              "Country": data["Country"],
               "Employees": data["FullTimeEmployees"]
             };
             var col2 = {
@@ -188,34 +181,24 @@ function getCompanyOverview (ticker){
               "52 Week Low": data["52WeekLow"],
               "Exchange": data["Exchange"]
             };
-          
+            
+            // final array to be looped through 
             var infoArr = [col1, col2, col3, col4];
-            console.log(infoArr);
-            console.log(infoArr.length);
 
+            // loop through array selected date to create/populate HTML elements
             for (i = 0; i < infoArr.length; i++){
 
               var keysArr = Object.keys(infoArr[i]);
-              var infoColEl = document.createElement("div");
-              infoColEl.className = "info-column";
-              var colListEl = document.createElement("ul");
-              colListEl.className = "info-list";
+              var infoColEl = $('<div></div>').addClass("info-column");
+              var colListEl = $('<ul></ul>').addClass("info-list");
 
               for (j=0; j < keysArr.length; j++){
-                var colItemEl = document.createElement("li");
-                colItemEl.textContent = keysArr[j];
-                colItemEl.className = "info-item";
-
-                var colParEl = document.createElement("p");
-                colParEl.textContent = infoArr[i][keysArr[j]];
-                colParEl.className = "info-paragraph";
-
-                colItemEl.append(colParEl);
-                colListEl.append(colItemEl);
-              };
+                $(colListEl).append("<li class='info-item'>" + keysArr[j] + "<p class='info-paragraph'>"
+                  + infoArr[i][keysArr[j]] + "</p></li>")
+                };
               
-              infoColEl.append(colListEl);
-              document.getElementById("company-info").append(infoColEl);
+              $(infoColEl).append(colListEl);
+              $('#company-info').append(infoColEl);
             };
 
           });
@@ -245,16 +228,9 @@ function getCompanyLogo (coDescription){
       console.log("There was a problem with the Clearbit request");
       return false;
     }
-  })
-
-
+  });
 }
 
-
-//getStockDataWeekly(theTicker);
-//getCompanyLogo(theName);
-//getStockDataDay(theTicker);
-//getCompanyOverview(theTicker);
 
 var checkDivHasChildren = function(div){
   if (div.children().length > 0){
