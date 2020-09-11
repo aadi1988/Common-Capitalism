@@ -59,6 +59,9 @@ margin: 0 auto;
     height: 200px;
 }
 
+#news{
+    display: flex;
+}
 
 #chart_div,#earningChart{
     width: 800px;
