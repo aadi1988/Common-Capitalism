@@ -15,11 +15,6 @@ function sleep(milliseconds) {
 }
 
 
-// Temporary variable for a Ticker to use in function calls
-//theTicker = 'TSLA';
-//theName = 'Tesla';
-
-
 // Draws the chart utilizing google charts
 function drawChart(arr,xAxis,yAxis,chart_div,moneyFormat) {
   var data = new google.visualization.DataTable();
@@ -77,12 +72,9 @@ function parsePriceDataWeekly(data){
 }
 
 
-function parsePriceDataDay(data){
-  // TBD
-}
-
-
 function getStockDataWeekly (ticker){
+
+    checkDivHasChildren($("#name-price"));
 
     var apiKey = "YYN6L1UF6A17ZCV3";
     var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol="
@@ -117,15 +109,12 @@ function getStockDataDay (ticker){
               var dateArr = Object.keys(data["Time Series (5min)"]);
               var currentDate = dateArr[0];
               var currentPrice = data["Time Series (5min)"][currentDate]["4. close"];
-              console.log(currentPrice);
+
               var arr = loadSharesBought(ticker);
               var cashBal = arr[0];
               var totalSharesBought = arr[1];
               buyShares(ticker,currentPrice,cashBal,totalSharesBought);
-              // var priceEl = document.createElement("h2");
-              // priceEl.textContent = currentPrice;
-              // document.getElementById("name-price").append(priceEl);
-
+              
               $("#name-price").append("<h2>" + currentPrice + "</h2>");
               $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
           });
@@ -146,20 +135,13 @@ function getCompanyOverview (ticker){
   fetch(apiUrl).then(function(response){
     if(response.ok){
           response.json().then(function(data){
+            
+            checkDivHasChildren($("#company-info"));
             $("#about-company").text(data.Name);
             $("#companyDesc").text(data.Description);
-            var coNameEl = document.createElement("h2");
+            var coNameEl = $("h2");
             coNameEl.textContent = data["Name"];
-            var coName = data["Name"];
-           
-            if (coName.indexOf(',') > -1){
-                  getCompanyLogo(coName.split(",")[0]);
-            }
-            else if(coName.indexOf(' ') > -1){
-                  getCompanyLogo(coName.split(" ")[0]);
-            }
-            
-            document.getElementById("name-price").append(coNameEl);
+            $("#name-price").append(coNameEl);
 
             var col1 = {
               "Name": data["Name"],
@@ -209,27 +191,32 @@ function getCompanyOverview (ticker){
   });
 }
 
- 
-function getCompanyLogo (coDescription){
-  var authString = "sk_a70ce0577fa9a01c10047d59be8acc31:";
-  var apiUrl = "https://company.clearbit.com/v1/domains/find?name=" + coDescription;
 
-  fetch(apiUrl, {method: 'GET', headers: {'Authorization': 'Basic '+btoa(authString)}}).then(function(response){
+function getCompanyLogo (ticker){
+  var authString = "&token=btcq48v48v6svpqla9fg";
+  var apiUrl = "https://finnhub.io/api/v1/stock/profile2?symbol=" + ticker + authString;
+
+  fetch(apiUrl).then(function(response){
     if (response.ok) {
       response.json().then(function(data){
+
+        checkDivHasChildren($("#logo"));
         
-        var logoEl = document.createElement('img');
-        logoEl.src = data['logo'];
-        document.getElementById("logo").append(logoEl);
+        var logoEl = $("<img></img>");
+        $(logoEl).attr('src', data['logo']);
+        $("#logo").append(logoEl);
+
         return true;
       })
     }
     else {
-      console.log("There was a problem with the Clearbit request");
+      console.log("There was a problem with the finnhub request");
       return false;
     }
   });
 }
+
+
 
 
 var checkDivHasChildren = function(div){
@@ -350,6 +337,7 @@ var buyShares = function(...args){
 var callDisplayFunc = function(ticker){
   
   companyNews(ticker.toUpperCase());
+  getCompanyLogo(ticker.toUpperCase());
   getStockDataWeekly(ticker.toUpperCase());  
   getStockDataDay(ticker.toUpperCase());
   getCompanyOverview(ticker.toUpperCase());
