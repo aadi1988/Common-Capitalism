@@ -393,8 +393,8 @@ $("#search-button").on('click',function(){
   
   })
 
-  var saveSharesBought = function(ticker,cashBal,numShares){
-      sharesBought[ticker] = numShares;
+  var saveSharesBought = function(ticker,cashBal,numShares,price){
+      sharesBought[ticker] = [numShares,price];
       sharesBought['cashBal'] = cashBal
       console.log(sharesBought);
       localStorage.setItem("shares_dict",JSON.stringify(sharesBought));
@@ -417,7 +417,7 @@ $("#search-button").on('click',function(){
       if(sharesBought[ticker]!== undefined){
         console.log(sharesBought);
         
-        totalSharesBought = sharesBought[ticker];
+        totalSharesBought = sharesBought[ticker][0];
       }
       else{
         
@@ -444,8 +444,8 @@ $("#search-button").on('click',function(){
       console.log(price);
       
       cashBal = cashBal - numShares * price;
-      $(".modal-body").text("Congratulations you bought " + numShares + " shares of " + ticker);
+      $(".modal-body").text("Congratulations you bought " + numShares + " shares of " + ticker + "at $" + );
       $("#myModal").modal();
       buyShares(ticker, price,cashBal,totalSharesBought);
-      saveSharesBought(ticker,cashBal,totalSharesBought);
+      saveSharesBought(ticker,cashBal,totalSharesBought,price);
   })
