@@ -106,6 +106,7 @@ function getStockDataDay (ticker){
           response.json().then(function(data) {
 
               // populate relevant data to HTML
+              
               var dateArr = Object.keys(data["Time Series (5min)"]);
               var currentDate = dateArr[0];
               var currentPrice = data["Time Series (5min)"][currentDate]["4. close"];
@@ -136,11 +137,17 @@ function getCompanyOverview (ticker){
     if(response.ok){
           response.json().then(function(data){
             
-            checkDivHasChildren($("#company-info"));
-            $("#about-company").text(data.Name);
+            $(".about-span").append("<h2 id='aboutCompany'></h2>");
+            $(".about-span").append("<hr>");
+            $(".about-span").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
+            $("#aboutCompany").text(data.Name);
             $("#companyDesc").text(data.Description);
+            $(".about-span").append($("#aboutCompany"));
+            $(".about-span").append($("#companyDesc"));
+            checkDivHasChildren($("#company-info"));
             var coNameEl = $("h2");
             coNameEl.textContent = data["Name"];
+            
             $("#name-price").append(coNameEl);
 
             var col1 = {
@@ -227,6 +234,8 @@ var checkDivHasChildren = function(div){
 
 
 var companyNews = function(ticker){
+   checkDivHasChildren($("#newsHeadingDiv"));
+   checkDivHasChildren($("#news"));
    var apiURL = "https://gnews.io/api/v3/search?q=" + ticker + "&token=4a1370f0a7607f7717fdf9a34c32933a";
    fetch(apiURL).then(function(response){
      if(response.ok){
@@ -234,11 +243,11 @@ var companyNews = function(ticker){
                  console.log(data);
                  var hrEl = $("<hr>");
                  var heading = $("<h2 id='news-heading'>Newsbits about the company</h2>");
-                 checkDivHasChildren($("#newsHeadingDiv"));
+                 var newsDiv = $("<div id='news'></div>");
                  $("#newsHeadingDiv").append(hrEl);
                  $("#newsHeadingDiv").append(heading);
                  $("#newsHeadingDiv").append(hrEl);
-                 checkDivHasChildren($("#news"));
+                 
                  for (i=0; i<3; i++){
                     var date = moment(data.articles[i].publishedAt).format("DD MMM YYYY");
                  
@@ -251,11 +260,11 @@ var companyNews = function(ticker){
                    
                     
                     $(insideDiv).append($("<a href= \"" + data.articles[i].url + "\" id=\"news-read-more\">Read More</a>"));
-                    $("#news").append(insideDiv);
+                    newsDiv.append(insideDiv);
                  
                 }
                  
-                 
+                $("#newsHeadingDiv").append(newsDiv);
 
             })
         }
@@ -271,10 +280,12 @@ var resize = function(chart_div,data,options){
 
 
 var getEarningReport = function(ticker){
+    //checkDivHasChildren($("#earningChart"));
     var apiUrl = "https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=" + ticker + "&apikey=YYN6L1UF6A17ZCV3";
     fetch(apiUrl).then(function(response){
       if(response.ok){
              response.json().then(function(data){
+               
                var datePriceArr = [];
                var finalArr = [];
                for(var i=0;i<5;i++){
@@ -290,7 +301,10 @@ var getEarningReport = function(ticker){
                 finalArr.push(datePriceArr);
                }
                console.log(finalArr);
-               
+                checkDivHasChildren($("#earnings"));
+                $("#earnings").append("<h2>Earnings</h2>");
+                $("#earnings").append("<hr>");
+                $("#earnings").append("<div id='earningChart' style='width:100%'></div>");
                 drawChart(finalArr,'Date','Net Income','earningChart','$#,###,###,###');
                 
              })
@@ -331,7 +345,7 @@ var buyShares = function(...args){
     
     $("#buyShares").append(divEl);    
     $("#buyShares").append($("<button id='buyNow' type='button'>Buy Now!</button>"));
-    
+    $("#buyShares").append($("<button id='sellNow' type='button'>Sell Now!</button>"));
 }
 
 var callDisplayFunc = function(ticker){
@@ -357,8 +371,8 @@ $("#search-button").on('click',function(){
   
   })
 
-  var saveSharesBought = function(ticker,cashBal,numShares){
-      sharesBought[ticker] = numShares;
+  var saveSharesBought = function(ticker,cashBal,numShares,price){
+      sharesBought[ticker] = [numShares,price];
       sharesBought['cashBal'] = cashBal
       console.log(sharesBought);
       localStorage.setItem("shares_dict",JSON.stringify(sharesBought));
@@ -381,7 +395,7 @@ $("#search-button").on('click',function(){
       if(sharesBought[ticker]!== undefined){
         console.log(sharesBought);
         
-        totalSharesBought = sharesBought[ticker];
+        totalSharesBought = sharesBought[ticker][0];
       }
       else{
         
@@ -411,5 +425,28 @@ $("#search-button").on('click',function(){
       $(".modal-body").text("Congratulations you bought " + numShares + " shares of " + ticker);
       $("#myModal").modal();
       buyShares(ticker, price,cashBal,totalSharesBought);
-      saveSharesBought(ticker,cashBal,totalSharesBought);
+      saveSharesBought(ticker,cashBal,totalSharesBought,price);
   })
+
+  $("#buyShares").on('click','#sellNow',function(event){
+     
+    var numShares = Number($("#shares").val());
+    
+    var ticker = $("#search").val().toUpperCase();
+    var arr = loadSharesBought(ticker);
+    var cashBal = arr[0];
+    var totalSharesBought = arr[1];
+    totalSharesBought = totalSharesBought - numShares;
+    console.log($("#shares").val());
+    
+  
+    var price = Number($("#price").text().split('$')[1]);
+    console.log(price);
+    
+    cashBal = cashBal + numShares * price;
+    $(".modal-body").text("Congratulations you sold " + numShares + " shares of " + ticker);
+    $("#myModal").modal();
+    buyShares(ticker, price,cashBal,totalSharesBought);
+    saveSharesBought(ticker,cashBal,totalSharesBought,price);
+})
+
