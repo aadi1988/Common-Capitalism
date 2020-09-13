@@ -427,9 +427,9 @@ $("#search-button").on('click',function(){
       cashBal = cashBal - numShares * price;
       
       $(".modal-content").text("Congratulations you bought " + numShares + " shares of " + ticker);
-      $("#modal1").modal();
+      $(".modal").modal();
       
-      document.getElementById("buyNow").addEventListener("click", alert("Congratulations you bought " + numShares + " shares of " + ticker));
+      // document.getElementById("buyNow").addEventListener("click", ("Congratulations you bought " + numShares + " shares of " + ticker));
  
       
       
@@ -458,7 +458,7 @@ $("#search-button").on('click',function(){
     cashBal = cashBal + numShares * price;
     $(".modal-content").text("Congratulations you sold " + numShares + " shares of " + ticker);
     
-      document.getElementById("sellNow").addEventListener("click", alert("Congratulations you sold " + numShares + " shares of " + ticker));
+      // document.getElementById("sellNow").addEventListener("click", alert("Congratulations you sold " + numShares + " shares of " + ticker));
       
 
     buyShares(ticker, price,cashBal,totalSharesBought);
