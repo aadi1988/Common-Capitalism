@@ -136,9 +136,6 @@ function getCompanyOverview (ticker){
     if(response.ok){
           response.json().then(function(data){
             
-            checkDivHasChildren($("#company-info"));
-            checkDivHasChildren($("#company-desc"));
-
             $(".about-span").append("<h2 id='aboutCompany'></h2>");
             $(".about-span").append("<hr>");
             $(".about-span").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
@@ -147,9 +144,10 @@ function getCompanyOverview (ticker){
             $(".about-span").append("<h1>About the Company</h1>");  
             $(".about-span").append($("#aboutCompany"));
             $(".about-span").append($("#companyDesc"));
+            checkDivHasChildren($("#company-info"));
+            var coNameEl = $("h2");
+            coNameEl.textContent = data["Name"];
             
-            var coNameEl = $("<h2></h2>");
-            coNameEl.text(data.Name);
             $("#name-price").append(coNameEl);
 
             var col1 = {
@@ -327,11 +325,11 @@ var buyShares = function(...args){
     var divEl = $("<div style='display: flex; font-size: 13px;'></div>");
     var ulEl1 = $("<ul style='list-style: none; margin-bottom: 0px;'>");
     var ulEl2 = $("<ul style='list-style: none; margin-bottom: 0px;'>");
-    ulEl1.append($("<li style='margin-bottom: 14px;'> Cash Balance Available: </li>"));
-    ulEl1.append($("<li style='margin-bottom: 14px;'>Shares</li>"));
-    ulEl1.append($("<li style='margin-bottom: 14px;'>Market Price</li>"));
-    ulEl1.append($("<li style='margin-bottom: 14px;'>Estimated Cost: </li>"));
-    ulEl1.append($("<li style='margin-bottom: 14px;'>Total Number of Shares Bought: </li>"));
+    ulEl1.append($("<li style='margin-bottom: 29px;'> Cash Balance Available: </li>"));
+    ulEl1.append($("<li style='margin-bottom: 35px;'>Shares</li>"));
+    ulEl1.append($("<li style='margin-bottom: 15px;'>Market Price</li>"));
+    ulEl1.append($("<li style='margin-bottom: 13px;'>Estimated Cost: </li>"));
+    ulEl1.append($("<li style='margin-bottom: 27px;'>Total Number of Shares Bought: </li>"));
     
     ulEl2.append($("<li style='margin-bottom: 14px;'>US$" + args[2] + "</li>"));
     ulEl2.append($("<li style='margin-bottom: 14px;'><input type='text' id='shares' placeholder='No.of Shares'></li>"));

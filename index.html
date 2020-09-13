@@ -2,123 +2,132 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
-   
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Document</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <link rel="stylesheet" href="./css//font-awesome-4.7.0/css/font-awesome.min.css">
-      <!--Import materialize.css-->
-     
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-      <!--Let browser know website is optimized for mobile-->
-    <link rel="stylesheet" href="css/style.css" />
-     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <title>Document</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css//font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--Import materialize.css-->
+
+
+  <!--Let browser know website is optimized for mobile-->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
 </head>
 
 
 
 <body>
   <div class="row">
-  <header>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Stock Displayer</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Buy</a></li>
-        <li><a href="#">Sell</a></li>
-        <li><a href="#">Trade</a></li>
-      </ul>
-    </div>
-  </nav>
-  </header>
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">
+            <img src="./assets/img/cclogo.png" alt="">
+            <span class="brand-logo-text">Stock Displayer</span>
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Buy</a></li>
+            <li><a href="#">Sell</a></li>
+            <li><a href="#">Trade</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
   </div>
-  
-  
+
+
   <div class="row" id="textbox">
-                 <form>
-                    <div class="form-group" id="form">
-                         <div class="input-group" style="width: 65%; margin-left: 20%">
-                            <input  type="text" id="search" placeholder="Enter the Company Name">
-                            <span id="search-button">
-                                  <button style="background-color: #E2686D" class="btn waves-effect waves-light" type="button" name="action">Submit
-                                    <i class="material-icons right">send</i>
-                                      </button>
-                            </span>
-                         </div>            </div>
-                </form>
+    <form>
+      <div class="form-group" id="form">
+        <div class="input-group" style="width: 65%; margin-left: 20%">
+          <input type="text" id="search" placeholder="Enter the Company Name">
+          <span id="search-button">
+            <button style="background-color: #E2686D" class="btn waves-effect waves-light" type="button"
+              name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
   </div>
-   
-   
-    
-    
-<div class="mein_boed" style="display: flex; background-color: #C3F53C">
-    
-        <div class="main_hed" style="width: 65%;" >
-            
-            <!-- Logo, Name, and current price go HERE!! -->
-           
-            <div id="logo-name-price">
-               
-                <div id="logo">
-                    <img style=" border-radius: 40px; background-blend-mode: lighten; margin-left: 20%; width: 300px; height: 350px;" src="img/ezgif.com-gif-maker.png">
-                    
-                    
-                    </div>
-                <div id="name-price" style="font-display: auto; background-color: azure; margin-top: 60px; border: 1px solid black; border-radius: 10px; padding: 30px; margin-left: 10%">
-                    <i style="height: 10px; width: 15px;" class="fa fa-university" aria-hidden="true"></i>
-         
-                </div>
-            </div>
-            
-
-            <div id ="chart_div"></div>
-            
-
-            
-            <div class="about-span" id="company-desc" style="margin-top: 50px;">
-                
-            </div>
 
 
 
-            <div style="display: flex;" id="company-info">
-            
-            </div>
-            
 
-           
-            <div id ="newsHeadingDiv">
-                
-            </div>
-            
-            
-            
-            <div id="earnings">
-                
-            </div>    
-            
-        </div>   
-        
-     
-        <div class="min_left" style="width:25%">
-            <div class="bos_sed" id="buyShares" style="background-color: azure; margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
-               <h4>We Trade your Stocks!!</h4>
-             
-                
-            </div>
-            
-        </div>
+  <div class="mein_boed" style="display: flex; background-color: #C3F53C">
+
+    <div class="main_hed" style="width: 65%;">
+
+      <!-- Logo, Name, and current price go HERE!! -->
+
+      <div id="logo-name-price">
+
+        <div id="logo">
+          <img
+            style=" border-radius: 40px; background-blend-mode: lighten; margin-left: 20%; width: 300px; height: 350px;"
+            src="assets/img/ezgif.com-gif-maker.png">
+
 
         </div>
+        <div id="name-price"
+          style="font-display: auto; background-color: azure; margin-top: 60px; border: 1px solid black; border-radius: 10px; padding: 30px; margin-left: 10%">
+          <i style="height: 10px; width: 15px;" class="fa fa-university" aria-hidden="true"></i>
 
-      
-        <div id="modal1" class="modal">
-        <div class="modal-content">
+        </div>
+      </div>
+      <!-- Chart goes HERE!! -->
+      <br>
+      <div id="chart_div">
+
+
+      </div>
+
+
+      <div class="about-span" style="margin-top: 50px;">
+
+      </div>
+
+      <!-- THIS IS WHERE THE COMPANY INFO IS DISPLAYED -->
+      <div style="display: flex; background-color: azure; border:solid 5px #1b5e20; border-radius: 40px;"
+        id="company-info"></div>
+
+
+
+      <div id="newsHeadingDiv">
+
+      </div>
+
+
+
+      <div id="earnings">
+
+      </div>
+
+    </div>
+
+
+    <div class="min_left" style="width:25%">
+      <div class="bos_sed" id="buyShares"
+        style="background-color: azure; margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
+        <h4>We Trade your Stocks!!</h4>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
       <h4>Modal Header</h4>
       <p>A bunch of text</p>
     </div>
@@ -126,19 +135,19 @@
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
   </div>
-      
-      
-          
-          
-         
-       
-   
-    
-    </script>      
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> 
-     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="js/script.js"></script>
+
+
+
+
+
+
+
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
