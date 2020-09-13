@@ -74,8 +74,6 @@ function parsePriceDataWeekly(data){
 
 function getStockDataWeekly (ticker){
 
-    checkDivHasChildren($("#name-price"));
-
     var apiKey = "YYN6L1UF6A17ZCV3";
     var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol="
     + ticker + "&out&apikey=" + apiKey;
@@ -137,17 +135,14 @@ function getCompanyOverview (ticker){
     if(response.ok){
           response.json().then(function(data){
             
-            checkDivHasChildren($("#company-info"));
-            checkDivHasChildren($("#company-desc"));
-
-            $(".about-span").append("<h2 id='aboutCompany'></h2>");
-            $(".about-span").append("<hr>");
-            $(".about-span").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
+            $("#company-desc").append("<h2 id='aboutCompany'></h2>");
+            $("#company-desc").append("<hr>");
+            $("#company-desc").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
             $("#aboutCompany").text(data.Name);
             $("#companyDesc").text(data.Description);
-            $(".about-span").append($("#aboutCompany"));
-            $(".about-span").append($("#companyDesc"));
-            
+            $("#company-desc").append($("#aboutCompany"));
+            $("#company-desc").append($("#companyDesc"));
+
             var coNameEl = $("<h2></h2>");
             coNameEl.text(data.Name);
             $("#name-price").append(coNameEl);
@@ -209,7 +204,7 @@ function getCompanyLogo (ticker){
     if (response.ok) {
       response.json().then(function(data){
 
-        checkDivHasChildren($("#logo"));
+        
         
         var logoEl = $("<img></img>");
         $(logoEl).attr('src', data['logo']);
@@ -236,8 +231,7 @@ var checkDivHasChildren = function(div){
 
 
 var companyNews = function(ticker){
-   checkDivHasChildren($("#newsHeadingDiv"));
-   checkDivHasChildren($("#news"));
+   
    var apiURL = "https://gnews.io/api/v3/search?q=" + ticker + "&token=4a1370f0a7607f7717fdf9a34c32933a";
    fetch(apiURL).then(function(response){
      if(response.ok){
@@ -303,7 +297,7 @@ var getEarningReport = function(ticker){
                 finalArr.push(datePriceArr);
                }
                console.log(finalArr);
-                checkDivHasChildren($("#earnings"));
+                
                 $("#earnings").append("<h2>Earnings</h2>");
                 $("#earnings").append("<hr>");
                 $("#earnings").append("<div id='earningChart' style='width:100%'></div>");
@@ -351,6 +345,17 @@ var buyShares = function(...args){
 }
 
 var callDisplayFunc = function(ticker){
+
+  // Clear HTML
+  checkDivHasChildren($("#newsHeadingDiv"));
+  checkDivHasChildren($("#company-desc"));
+  checkDivHasChildren($("#logo"));
+  checkDivHasChildren($("#name-price"));
+  checkDivHasChildren($("#company-info"));
+  checkDivHasChildren($("#news"));
+  checkDivHasChildren($("#earnings"));
+  checkDivHasChildren($("#about-span"));
+
   
   companyNews(ticker.toUpperCase());
   getCompanyLogo(ticker.toUpperCase());
