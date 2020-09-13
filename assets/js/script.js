@@ -137,6 +137,9 @@ function getCompanyOverview (ticker){
     if(response.ok){
           response.json().then(function(data){
             
+            checkDivHasChildren($("#company-info"));
+            checkDivHasChildren($("#company-desc"));
+
             $(".about-span").append("<h2 id='aboutCompany'></h2>");
             $(".about-span").append("<hr>");
             $(".about-span").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
@@ -144,10 +147,9 @@ function getCompanyOverview (ticker){
             $("#companyDesc").text(data.Description);
             $(".about-span").append($("#aboutCompany"));
             $(".about-span").append($("#companyDesc"));
-            checkDivHasChildren($("#company-info"));
-            var coNameEl = $("h2");
-            coNameEl.textContent = data["Name"];
             
+            var coNameEl = $("<h2></h2>");
+            coNameEl.text(data.Name);
             $("#name-price").append(coNameEl);
 
             var col1 = {
