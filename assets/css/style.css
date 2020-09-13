@@ -21,10 +21,15 @@ top: 0;
 left: 0;
 display: flex;
 position: fixed;
-background: white;
+background: green;
 width: 100%;
 padding: 15px 60px;
 
+}
+
+#cLogo{
+    width: 40px;
+    height:30px;
 }
 
 .dialog-background{
@@ -161,9 +166,28 @@ margin: 0 auto;
     display: none;
 }
 
+main{
+    margin: 0;
+}
+
 #landingPage{
-    background-image: url("../../img/img.png");
-    background-position: center;
-    background-size: cover;
+    display: flex;
+    background-color:black;
+    justify-content: center;
+    align-items: center;
     height: 800px;
+    margin:0;
+}
+
+#lPageHeader{
+    color: green;
+    text-shadow: lightgreen;
+    font-size: 60px;
+    text-align:center
+}
+
+#lPageSubHead{
+    color: white;
+    font-size: 40px;
+    text-align:  center;
 }
