@@ -15,65 +15,12 @@ a {
     font-size: 14px;
 }
 
-
-
 header{
 position: fixed;
 
 width: 100%;
 
 }
-
-
-.companyNameLogo{
-    display: flex;
-    list-style: none;
-    justify-content: flex-start;
-    align-content: center;
-}
-
-#cLogo{
-    width: 40px;
-    height:30px;
-    
-}
-
-.dialog-background{
-    background: none repeat scroll 0 0;
-    height: 100%;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    display: none;
-}
-.dialog-loading-wrapper {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border: 0 none;
-    height: 100px;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
-    position: fixed;
-    top: 50%;
-    width: 100px;
-    z-index: 9999999;
-}  
-.dialog-loading-icon {
-    background-color: #FFFFFF !important;
-    border-radius: 13px;
-    display: block;
-    height: 100px;
-    line-height: 100px;
-    margin: 0;
-    padding: 1px;
-    text-align: center;
-    width: 100px;
-}
-
 
 .btn_std {
     margin-top: 80px;
@@ -168,13 +115,3 @@ margin-top: 10%;
 #news-heading{
     margin: 10px;
 }
-
-#buyShares{
-    margin-top: 80px; 
-    border: 1px solid black; 
-    border-radius: 10px; 
-    padding: 30px;
-    display: none;
-}
-
-
