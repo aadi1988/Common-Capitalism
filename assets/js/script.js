@@ -494,7 +494,7 @@ $("#search-button").on('click',function(){
       displayModal("Please enter a valid ticker");
     }
     else{
-      //$("#landingPage").hide();
+      
       $(".mein_boed").css("display","flex");
       $(".dialog-background").show();
       callDisplayFunc(ticker);
