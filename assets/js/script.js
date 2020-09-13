@@ -145,7 +145,7 @@ function getCompanyOverview (ticker){
             $(".about-span").append($("#aboutCompany"));
             $(".about-span").append($("#companyDesc"));
             checkDivHasChildren($("#company-info"));
-            var coNameEl = $("h2");
+            var coNameEl = $("<h2></h2>");
             coNameEl.textContent = data["Name"];
             
             $("#name-price").append(coNameEl);
