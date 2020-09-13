@@ -15,6 +15,8 @@ a {
     font-size: 14px;
 }
 
+
+
 header{
 position: fixed;
 
@@ -22,9 +24,18 @@ width: 100%;
 
 }
 
+
+.companyNameLogo{
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    align-content: center;
+}
+
 #cLogo{
     width: 40px;
     height:30px;
+    top:25px;
 }
 
 .dialog-background{
@@ -63,9 +74,6 @@ width: 100%;
     width: 100px;
 }
 
-.mein_boed{
-    display: none;
-}
 
 .btn_std {
     margin-top: 80px;
@@ -169,28 +177,4 @@ margin-top: 10%;
     display: none;
 }
 
-main{
-    margin: 0;
-}
 
-#landingPage{
-    display: flex;
-    background-color:black;
-    justify-content: center;
-    align-items: center;
-    height: 800px;
-    margin:0;
-}
-
-#lPageHeader{
-    color: green;
-    text-shadow: lightgreen;
-    font-size: 60px;
-    text-align:center
-}
-
-#lPageSubHead{
-    color: white;
-    font-size: 40px;
-    text-align:  center;
-}
