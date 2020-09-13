@@ -115,8 +115,7 @@ function getStockDataDay (ticker){
               var cashBal = arr[0];
               var totalSharesBought = arr[1];
               buyShares(ticker,currentPrice,cashBal,totalSharesBought);
-              
-              $("#name-price").append("<h2>" + currentPrice + "</h2>");
+              $("#name-price").append("<h2>"+"Price: " +"$"+ currentPrice + "</h2>");
               $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
           });
       }
@@ -142,6 +141,7 @@ function getCompanyOverview (ticker){
             $(".about-span").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
             $("#aboutCompany").text(data.Name);
             $("#companyDesc").text(data.Description);
+            $(".about-span").append("<h1>About the Company</h1>");  
             $(".about-span").append($("#aboutCompany"));
             $(".about-span").append($("#companyDesc"));
             checkDivHasChildren($("#company-info"));
@@ -274,7 +274,10 @@ var companyNews = function(ticker){
 }
 
 var resize = function(chart_div,data,options){
+     
   var chart = new google.visualization.LineChart(document.getElementById(chart_div));
+    
+    $("#chart_div").append("<div id='chart_div' style='width:100%'></div>");
   chart.draw(data,options);
 }
 
@@ -344,8 +347,8 @@ var buyShares = function(...args){
     divEl.append(ulEl2);
     
     $("#buyShares").append(divEl);    
-    $("#buyShares").append($("<button id='buyNow' type='button'>Buy Now!</button>"));
-    $("#buyShares").append($("<button id='sellNow' type='button'>Sell Now!</button>"));
+    $("#buyShares").append($("<button class='waves-effect waves-light btn' style='background-color: #bf360c' id='buyNow' type='button'>Buy Now! </button>"));
+    $("#buyShares").append($("<button style='background-color: #ff8f00' class='waves-effect waves-light btn' id='sellNow' type='button'>Sell Now</button>"));
 }
 
 var callDisplayFunc = function(ticker){
@@ -422,11 +425,20 @@ $("#search-button").on('click',function(){
       console.log(price);
       
       cashBal = cashBal - numShares * price;
-      $(".modal-body").text("Congratulations you bought " + numShares + " shares of " + ticker);
-      $("#myModal").modal();
+      
+      $(".modal-content").text("Congratulations you bought " + numShares + " shares of " + ticker);
+      $("#modal1").modal();
+      
+      document.getElementById("buyNow").addEventListener("click", alert("Congratulations you bought " + numShares + " shares of " + ticker));
+ 
+      
+      
       buyShares(ticker, price,cashBal,totalSharesBought);
       saveSharesBought(ticker,cashBal,totalSharesBought,price);
   })
+
+
+ 
 
   $("#buyShares").on('click','#sellNow',function(event){
      
@@ -444,8 +456,11 @@ $("#search-button").on('click',function(){
     console.log(price);
     
     cashBal = cashBal + numShares * price;
-    $(".modal-body").text("Congratulations you sold " + numShares + " shares of " + ticker);
-    $("#myModal").modal();
+    $(".modal-content").text("Congratulations you sold " + numShares + " shares of " + ticker);
+    
+      document.getElementById("sellNow").addEventListener("click", alert("Congratulations you sold " + numShares + " shares of " + ticker));
+      
+
     buyShares(ticker, price,cashBal,totalSharesBought);
     saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })

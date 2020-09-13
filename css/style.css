@@ -1,7 +1,6 @@
 body {
     background-color: white;
-    margin-left: 60px;
-    margin-right: 60px;
+    
 }
 h3, h2, p {
     margin: 0px;
@@ -17,13 +16,10 @@ a {
 }
 
 header{
-top: 0;
-left: 0;
-display: flex;
 position: fixed;
-background: white;
+
 width: 100%;
-padding: 15px 60px;
+
 }
 
 .btn_std {
@@ -34,6 +30,11 @@ padding: 15px 60px;
 .min_left {
     position: fixed;
     right: 130px;
+}
+
+.illus{
+position: fixed;
+left: 130px;
 }
 
 .rattings {
@@ -99,6 +100,9 @@ margin: 0 auto;
     margin-top: 5px;
 }
 
+#textbox{
+margin-top: 10%;
+}
 #insideNews{
     border: 1px solid black; 
     border-radius: 5px; 
