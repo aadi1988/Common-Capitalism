@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
+    <!--Links to call required libraries and title of the document-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
-    <title>Document</title>
+    <title>Common Capitalism</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -33,6 +34,7 @@
         </div>
     
     </header>
+    <!--Loader(called when waiting to fetch data-->
     <div class="dialog-background">
         <div class="dialog-loading-wrapper">
             <span class="dialog-loading-icon">Loading....</span>
@@ -43,7 +45,7 @@
         <div class="container">
             <div class="row">
                 
-                <!-- <div class="col" id="col1"> -->
+                <!-- search for ticker -->
                 
                     <form>
                         <div class="input-group">
@@ -55,7 +57,7 @@
                             </span>
                         </div>
                     </form>
-
+                    <!--Welcome-->
                     <div>
                         <div id="buyShares" style="background-color: azure; margin-top: 80px; border: 1px solid black; border-radius: 10px; padding: 30px;">
                             <div id="textShares"><strong><h2>Welcome to Common Capitalism</h2></strong></div>   
@@ -67,7 +69,7 @@
 
            <div class="row">
                 <div id="col2" style="background-color: #C3F53C">
-
+                    <!--Logo and company name and daily price-->
                     <div id="logo-name-price" style="width: 100%;">
                         <div id="logo" style="display: flex;">
                             <img class="responsive-img" style=" border-radius: 40px; background-blend-mode: lighten; margin-left: 40%; width: 30%; height: 250px;margin-top:30px;" src="assets/img/ezgif.com-gif-maker.png">
@@ -84,30 +86,22 @@
                         
                     </div>
 
-
+                    <!--Price chart-->
                     <div id ="chart_div"></div>
                     
-                    
+                    <!--Company Overview-->
                     <div class="about-span" id="company-desc" style="margin-top: 50px;"></div>
 
 
                     <div style="display: flex;" id="company-info"></div>
                 
-                
+                    <!--Daily newsbits of the company-->
                     <div id ="newsHeadingDiv"></div>
                     
-                    
+                    <!--Earnings chart-->
                     <div id="earnings"></div>    
-                
-                    <div id="modal1" class="modal">
-                    <div class="modal-content">
-                            <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                    </div>
-                </div>
+                    
+                    
 
                 <!-- End of Container  -->
             </div> 
@@ -122,7 +116,7 @@
                 
             </div> -->
         <!-- </div> -->
-
+        <!--Modal to alert of any errors or buy/sell of shares-->
         <div id="myModal" class="modal2">
 
             <!-- Modal content -->
@@ -138,14 +132,10 @@
                </div>
             </div>
         </div>
-    
-          
-          
-         
        
    
     
-    </script>      
+    <!--Javascript librariesf-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> 
      <script type="text/javascript" src="assets/js/materialize.min.js"></script>

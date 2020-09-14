@@ -1,3 +1,4 @@
+/*set body attributes*/
 body {
     background-color: white;
     /* padding-top: 70px; */
@@ -6,6 +7,7 @@ body {
 h3, h2, p {
     margin: 0px;
 }
+
 
 a {
     color: black;
@@ -16,53 +18,21 @@ a {
     font-size: 14px;
 }
 
+/*header attributes*/
 header{
     width: 100%;
 
 }
 
+/*header in nav bar*/
 #textHeader{
     font-size: 3vw;
     font-weight: bold;
 }
 
-.btn_std {
-    margin-top: 80px;
-    margin-bottom: 30px;
-}
-
-.min_left {
-    position: fixed;
-    right: 130px;
-}
-
-/*.illus{
-position: fixed;
-left: 130px;
-}
-*/
-/*
-.rattings {
-    border: 1px solid black;
-    width: 18%;
-    height: 100px;
-    border-radius: 64%;
-}
-*/
-/*
-.rcorners1 {
-border-radius: 500px;
-background: #73AD21;
-width: 134px;
-height: 134px;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 0 auto;
-}
-*/
+/*loader attributes*/
 .dialog-background{
-    background: none repeat scroll 0 0;
+    background: none repeat scroll 0 0; /*scroll capable if needed*/
     height: 100%;
     left: 0;
     margin: 0;
@@ -97,35 +67,51 @@ margin: 0 auto;
     width: 100px;
 }
 
+/*welcome message*/
 #textShares{
     text-align: center;
 }
 
-#news-img{
-    width: 200px;
-    height: 200px;
-}
-
+/*newsbits*/
 #news{
     display: flex;
 }
 
+#insideNews{
+    border: 1px solid black; 
+    border-radius: 5px; 
+    width: 30%; 
+    padding: 15px; 
+    margin-right: 15px; 
+    margin-top: 30px;
+}
+
+#news-heading{
+    margin: 10px;
+}
+
+
+/*charts price and earnings*/
 #chart_div,#earnings{
     width: 80%;
     height: 500px;
 }
 
+/*company logo attributes*/
 #logo{
     display: inline-block;
     padding: 20px;
     vertical-align: middle;
 }
+
+/*price and name of company*/
 #name-price{
     display: inline-block;
     padding: 20px;
     vertical-align: middle;
 }
 
+/*company info*/
 .info-column{
     font-size: 13px;
     font-weight: 700;
@@ -146,22 +132,7 @@ margin: 0 auto;
     margin-top: 5px;
 }
 
-#textbox{
-margin-top: 10%;
-}
-#insideNews{
-    border: 1px solid black; 
-    border-radius: 5px; 
-    width: 30%; 
-    padding: 15px; 
-    margin-right: 15px; 
-    margin-top: 30px;
-}
-
-#news-heading{
-    margin: 10px;
-}
-
+/*our website logo*/
 #cLogo{
     height: 40px;
     width: 50px;
@@ -169,6 +140,7 @@ margin-top: 10%;
     margin-top: 15px;
 }
 
+/*modal attributes*/
 .modal2 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

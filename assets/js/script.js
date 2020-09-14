@@ -1,21 +1,21 @@
+//Load google charts libraries
 google.charts.load('current', {packages: ['corechart']});
 google.charts.setOnLoadCallback(drawChart);
-
-var priceData = [];
-//var allData = {};
-var companyTicker;
+//global var to store no.of shares bought, cashbal etc.
 var sharesBought = {};
 
+//check if a div(givem as argument) is empty
 var checkDivHasChildren = function(div){
   if (div.children().length > 0){
     div.empty();
   }
 }
 
+//display modal when needed
 var displayModal = function(modalBody){
-   //console.log($(".modal-content > p"));
+   
    $(".modal-body > p").text(modalBody);
-   //console.log($(".modal-content > p"));
+  
    $(".modal2").show();
 
 }
@@ -49,7 +49,7 @@ function drawChart(arr,xAxis,yAxis,chart_div,moneyFormat) {
   
 }
 
-
+//parse weekly data
 function parsePriceDataWeekly(data){
 
     var parsedData = [];
@@ -77,7 +77,7 @@ function parsePriceDataWeekly(data){
     drawChart(parsedData,'Date','Price','chart_div','$#,###');
 }
 
-
+//display daily data(compnay ticker and stock price for the day)
 function getStockDataDay (data){
 
 
@@ -98,6 +98,7 @@ function getStockDataDay (data){
         
 }
 
+//display company overview(description, name, no.of employees etc.)
 function getCompanyOverview (data){
             checkDivHasChildren($(".about-span"));
             $(".about-span").append("<h2 id='aboutCompany'></h2>");
@@ -155,6 +156,7 @@ function getCompanyOverview (data){
             };   
 }
 
+//display company logo
 function getCompanyLogo (data){
   
 
@@ -168,6 +170,8 @@ function getCompanyLogo (data){
 
 }
 
+
+//display news bits about the company(has links if need to read about them further)
 var companyNews = function(data){
                 checkDivHasChildren($("#newsHeadingDiv"));
                 checkDivHasChildren($("#news"));
@@ -197,6 +201,7 @@ var companyNews = function(data){
                $("#newsHeadingDiv").append(newsDiv);
 }
 
+//earning report charts
 var getEarningReport = function(data){
   //checkDivHasChildren($("#earningChart"));
   
@@ -222,6 +227,7 @@ var getEarningReport = function(data){
               drawChart(finalArr,'Date','Net Income','earningChart','$#,###,###,###');    
 }
 
+//option to buy shares(display info about cashbalance, how many sharess bought etc.)
 var buyShares = function(...args){
   
   checkDivHasChildren($("#buyShares"));
@@ -252,6 +258,7 @@ var buyShares = function(...args){
   $("#buyShares").append($("<button style='background-color: #ff8f00' class='waves-effect waves-light btn' id='sellNow' type='button'>Sell Now!</button>"));
 }
 
+//save info about shares bought per company
 var saveSharesBought = function(ticker,cashBal,numShares,price){
   sharesBought[ticker] = [numShares,price];
   sharesBought['cashBal'] = cashBal
@@ -292,7 +299,7 @@ var loadSharesBought =  function(ticker){
   return [cashBal,totalSharesBought];
 }
 
-
+//on clicking buy shares, user gets to buy shares and corresponding data is stored in local storage
 $("#buyShares").on('click','#buyNow',function(event){
  
   var numShares = Number($("#shares").val());
@@ -316,6 +323,7 @@ $("#buyShares").on('click','#buyNow',function(event){
   saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })
 
+//sell shares
 $("#buyShares").on('click','#sellNow',function(event){
  
 var numShares = Number($("#shares").val());
@@ -339,7 +347,7 @@ buyShares(ticker, price,cashBal,totalSharesBought);
 saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })
 
-
+//main function that calls all display on the page
 var callBackFunc = function(allData){
   console.log(allData);
   $("#buyShares").show();
@@ -354,6 +362,9 @@ var callBackFunc = function(allData){
   getEarningReport(allData['earnings']);
 }
 
+//fetch functions
+
+//daily data
 var fetchWeekData = function(ticker){
   
   var apiKey = "YYN6L1UF6A17ZCV3";
@@ -377,6 +388,7 @@ var fetchWeekData = function(ticker){
   });
 }
 
+//weekly data
 var fetchDailyData = function(ticker){
   var apiKey = "YYN6L1UF6A17ZCV3";
   var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
@@ -396,6 +408,8 @@ var fetchDailyData = function(ticker){
   });
 }
 
+
+//company overview
 var fetchCompanyOverview = function(ticker){
   var apiKey = "YYN6L1UF6A17ZCV3";
   var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol="
@@ -414,6 +428,7 @@ var fetchCompanyOverview = function(ticker){
   })
 }
 
+//logo
 var fetchLogo = function(ticker){
   var authString = "&token=btcq48v48v6svpqla9fg";
   var apiUrl = "https://finnhub.io/api/v1/stock/profile2?symbol=" + ticker + authString;
@@ -431,6 +446,7 @@ var fetchLogo = function(ticker){
   })
 }
 
+//news
 var fetchNews = function(ticker){
   var apiURL = "https://gnews.io/api/v3/search?q=" + ticker + "&token=885961acd54fb270a6e9a791562c0f01";
   return fetch(apiURL).then(function(responseNews){
@@ -446,6 +462,7 @@ var fetchNews = function(ticker){
   });
 }
 
+//earnings report
 var fetchEarningsReport = function(ticker){
   var apiUrl = "https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=" + ticker + "&apikey=YYN6L1UF6A17ZCV3";
   return fetch(apiUrl).then(function(responseEarnings){
@@ -462,6 +479,7 @@ var fetchEarningsReport = function(ticker){
   });
 }
 
+//main fetch function calling all others(waits till all  data is fetched)
 var fetchFunction = async function(ticker,callBackFunc){
   
   var allData = {};
@@ -479,7 +497,7 @@ var fetchFunction = async function(ticker,callBackFunc){
 }
 
 
-
+//draw the charts
 var resize = function(chart_div,data,options){
   var chart = new google.visualization.LineChart(document.getElementById(chart_div));
   chart.draw(data,options);
@@ -487,11 +505,12 @@ var resize = function(chart_div,data,options){
 
 
 
-
+//main function calling fetch calling function
 var callDisplayFunc = function(ticker){
   fetchFunction(ticker,callBackFunc);
 }
 
+//search button
 $("#search-button").on('click',function(){
     var ticker = $("#search").val();
   
@@ -507,6 +526,7 @@ $("#search-button").on('click',function(){
     
 })
 
+//close modal
 $("#close-modal").on('click',function(){
     $(".modal2").hide();
 })
