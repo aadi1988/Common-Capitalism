@@ -250,6 +250,7 @@ var buyShares = function(...args){
         estCostEl.text("US$" + estimateCost);
      }
      else{
+        $(".modal-header").css("background-color","red");
         displayModal("Please enter a valid value for number of shares");
      }
     
@@ -298,7 +299,7 @@ var loadSharesBought =  function(ticker){
     totalSharesBought = sharesBought[ticker][0];
   }
   else{
-    console.log('here');
+    
     totalSharesBought = 0;
   }
 
@@ -309,31 +310,38 @@ var loadSharesBought =  function(ticker){
 $("#buyShares").on('click','#buyNow',function(event){
  
   var numShares = Number($("#shares").val());
-  
-  var ticker = $("#search").val().toUpperCase();
-  var arr = loadSharesBought(ticker);
-  var cashBal = arr[0];
-  var totalSharesBought = arr[1];
-  totalSharesBought = numShares + totalSharesBought;
+  console.log("Herreeeeeeee");
   console.log($("#shares").val());
-  
-  
-  var price = Number($("#price").text().split('$')[1]);
-  console.log(price);
-  
-  cashBal = cashBal - numShares * price;
-  $(".modal-header").css("background-color","green");
-  $(".modal-header > h2").text("Congratulations");
-  displayModal("You bought " + numShares + " shares of " + ticker);
-  buyShares(ticker, price,cashBal,totalSharesBought);
-  saveSharesBought(ticker,cashBal,totalSharesBought,price);
+  if(!isNaN(numShares) && $("#shares").val() !== ""){
+    var ticker = $("#search").val().toUpperCase();
+    var arr = loadSharesBought(ticker);
+    var cashBal = arr[0];
+    var totalSharesBought = arr[1];
+    totalSharesBought = numShares + totalSharesBought;
+    console.log($("#shares").val());
+    
+    
+    var price = Number($("#price").text().split('$')[1]);
+    console.log(price);
+    
+    cashBal = cashBal - numShares * price;
+    $(".modal-header").css("background-color","green");
+    $(".modal-header > h2").text("Congratulations");
+    displayModal("You bought " + numShares + " shares of " + ticker);
+    buyShares(ticker, price,cashBal,totalSharesBought);
+    saveSharesBought(ticker,cashBal,totalSharesBought,price);
+  }
+  else{
+    $(".modal-header").css("background-color","red");
+    displayModal("Please enter a valid value for number of shares"); 
+  }
 })
 
 //sell shares
 $("#buyShares").on('click','#sellNow',function(event){
  
 var numShares = Number($("#shares").val());
-if(!isNaN(numShares)){
+if(!isNaN(numShares) && $("#shares").val() !== ""){
     var ticker = $("#search").val().toUpperCase();
     var arr = loadSharesBought(ticker);
     var cashBal = arr[0];
@@ -354,6 +362,7 @@ if(!isNaN(numShares)){
     saveSharesBought(ticker,cashBal,totalSharesBought,price);
 }
 else{
+    $(".modal-header").css("background-color","red");
     displayModal("Please enter a valid value for number of shares");
 }
 
