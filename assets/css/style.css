@@ -21,6 +21,11 @@ header{
 
 }
 
+#textHeader{
+    font-size: 3vw;
+    font-weight: bold;
+}
+
 .btn_std {
     margin-top: 80px;
     margin-bottom: 30px;
@@ -158,8 +163,10 @@ margin-top: 10%;
 }
 
 #cLogo{
-    height: 30px;
-    width: 40px;
+    height: 40px;
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 15px;
 }
 
 .modal2 {
@@ -241,7 +248,8 @@ margin-top: 10%;
     .body{
       width: 100%;
     }
-   
+    
   }
 
+  
 
