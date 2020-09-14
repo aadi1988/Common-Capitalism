@@ -1,3 +1,4 @@
+/*set body attributes*/
 body {
     background-color: white;
     /* padding-top: 70px; */
@@ -6,6 +7,7 @@ body {
 h3, h2, p {
     margin: 0px;
 }
+
 
 a {
     color: black;
@@ -16,58 +18,100 @@ a {
     font-size: 14px;
 }
 
+/*header attributes*/
 header{
     width: 100%;
 
 }
 
-.btn_std {
-    margin-top: 80px;
-    margin-bottom: 30px;
+/*header in nav bar*/
+#textHeader{
+    font-size: 3vw;
+    font-weight: bold;
 }
 
-.min_left {
-    position: fixed;
-    right: 130px;
+/*loader attributes*/
+.dialog-background{
+    background: none repeat scroll 0 0; /*scroll capable if needed*/
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
 }
-
-.illus{
-position: fixed;
-left: 130px;
-}
-
-.rattings {
-    border: 1px solid black;
-    width: 18%;
+.dialog-loading-wrapper {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
     height: 100px;
-    border-radius: 64%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    position: fixed;
+    top: 50%;
+    width: 100px;
+    z-index: 9999999;
+}  
+.dialog-loading-icon {
+    background-color: #FFFFFF !important;
+    border-radius: 13px;
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    margin: 0;
+    padding: 1px;
+    text-align: center;
+    width: 100px;
 }
 
-#news-img{
-    width: 200px;
-    height: 200px;
+/*welcome message*/
+#textShares{
+    text-align: center;
 }
 
+/*newsbits*/
 #news{
     display: flex;
 }
 
-#chart_div,#earningChart{
-    width: 800px;
-    height: 400px;
+#insideNews{
+    border: 1px solid black; 
+    border-radius: 5px; 
+    width: 30%; 
+    padding: 15px; 
+    margin-right: 15px; 
+    margin-top: 30px;
 }
 
+#news-heading{
+    margin: 10px;
+}
+
+
+/*charts price and earnings*/
+#chart_div,#earnings{
+    width: 80%;
+    height: 500px;
+}
+
+/*company logo attributes*/
 #logo{
     display: inline-block;
     padding: 20px;
     vertical-align: middle;
 }
+
+/*price and name of company*/
 #name-price{
     display: inline-block;
     padding: 20px;
     vertical-align: middle;
 }
 
+/*company info*/
 .info-column{
     font-size: 13px;
     font-weight: 700;
@@ -88,44 +132,97 @@ left: 130px;
     margin-top: 5px;
 }
 
-#textbox{
-margin-top: 10%;
-}
-#insideNews{
-    border: 1px solid black; 
-    border-radius: 5px; 
-    width: 30%; 
-    padding: 15px; 
-    margin-right: 15px; 
-    margin-top: 30px;
-}
-
-#news-heading{
-    margin: 10px;
-}
-
+/*our website logo*/
 #cLogo{
-    height: 30px;
-    width: 40px;
+    height: 40px;
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 15px;
 }
 
-.container {
-    margin: 0 auto;
-    max-width: 1280px;
-    width: 90%;
+/*modal attributes*/
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 100px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  @media only screen and (min-width: 993px) {
-    .container {
-      width: 90%;
-    }
-    #buyShares {
-        width: 100%;
-    }
+  
+  /* Modal Content */
+  .modal-content-1 {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    width: 50%;
+    height: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+
   }
-  @media only screen and (min-width: 601px) {
-    .container {
-      width: 90%;
-    }
+  
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: red;
+    color: white;
+  }
+  
+  .modal-body {
+      padding: 2px 16px;
+      font-size: 30px;
+      height:50%;}
+  
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
   }
 
+@media only screen and (min-width: 993px) {
+    .body{
+      width: 100%;
+    }
+    
+  }
+  
+
+  
 

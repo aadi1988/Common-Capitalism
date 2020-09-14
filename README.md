@@ -53,3 +53,4 @@ to local storage for future view.
 - Materialize / Responsiveness - We do believe Materialize CSS framework works as well as advertized. The Materialize grid framework
 did not appear to work as well as Bootstrap.  In a future iteration we investigate other CSS frameworks such as Bootstrap.
 - Alphavantage - API Only allows up to 5 calls per minute.  Our application calls it four time with one run which is less than ideal.
+- Had to create a new modal since Materialize modal did not work, mostly a compatibility issue with jquery versuon used. Need to look into it further.

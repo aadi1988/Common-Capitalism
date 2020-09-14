@@ -1,20 +1,23 @@
+//Load google charts libraries
 google.charts.load('current', {packages: ['corechart']});
 google.charts.setOnLoadCallback(drawChart);
-
-var priceData = [];
-//var allData = {};
-var companyTicker;
+//global var to store no.of shares bought, cashbal etc.
 var sharesBought = {};
 
+//check if a div(givem as argument) is empty
 var checkDivHasChildren = function(div){
   if (div.children().length > 0){
     div.empty();
   }
 }
 
+//display modal when needed
 var displayModal = function(modalBody){
-   $(".modal-content").text(modalBody);
-   $("#modal1").modal();
+   
+   $(".modal-body > p").text(modalBody);
+  
+   $(".modal2").show();
+
 }
 
 // Draws the chart utilizing google charts
@@ -26,7 +29,8 @@ function drawChart(arr,xAxis,yAxis,chart_div,moneyFormat) {
   data.addRows(arr);
 
   var options = {
-    height: 350,
+    width: 500,
+    height: 400,
     hAxis: {
       title: xAxis,
       format: 'M/d/y'
@@ -45,7 +49,7 @@ function drawChart(arr,xAxis,yAxis,chart_div,moneyFormat) {
   
 }
 
-
+//parse weekly data
 function parsePriceDataWeekly(data){
 
     var parsedData = [];
@@ -73,7 +77,7 @@ function parsePriceDataWeekly(data){
     drawChart(parsedData,'Date','Price','chart_div','$#,###');
 }
 
-
+//display daily data(compnay ticker and stock price for the day)
 function getStockDataDay (data){
 
 
@@ -87,12 +91,14 @@ function getStockDataDay (data){
               var cashBal = arr[0];
               var totalSharesBought = arr[1];
               buyShares(data["Meta Data"]["2. Symbol"],currentPrice,cashBal,totalSharesBought);
-              checkDivHasChildren($("#name-price"));
-              $("#name-price").append("<h2>" + currentPrice + "</h2>");
+              
+              $("#logo").append("<div id='name-price'></div>");
+              $("#name-price").append("<h2>$" + currentPrice + "</h2>");
               $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
         
 }
 
+//display company overview(description, name, no.of employees etc.)
 function getCompanyOverview (data){
             checkDivHasChildren($(".about-span"));
             $(".about-span").append("<h2 id='aboutCompany'></h2>");
@@ -150,11 +156,12 @@ function getCompanyOverview (data){
             };   
 }
 
+//display company logo
 function getCompanyLogo (data){
   
 
         checkDivHasChildren($("#logo"));
-        
+        checkDivHasChildren($("#subText"));
         var logoEl = $("<img></img>");
         $(logoEl).attr('src', data['logo']);
         $("#logo").append(logoEl);
@@ -163,6 +170,8 @@ function getCompanyLogo (data){
 
 }
 
+
+//display news bits about the company(has links if need to read about them further)
 var companyNews = function(data){
                 checkDivHasChildren($("#newsHeadingDiv"));
                 checkDivHasChildren($("#news"));
@@ -192,6 +201,7 @@ var companyNews = function(data){
                $("#newsHeadingDiv").append(newsDiv);
 }
 
+//earning report charts
 var getEarningReport = function(data){
   //checkDivHasChildren($("#earningChart"));
   
@@ -217,42 +227,38 @@ var getEarningReport = function(data){
               drawChart(finalArr,'Date','Net Income','earningChart','$#,###,###,###');    
 }
 
+//option to buy shares(display info about cashbalance, how many sharess bought etc.)
 var buyShares = function(...args){
   
   checkDivHasChildren($("#buyShares"));
   console.log(args);
   var estimateCost = 0;
-  $("#buyShares").append($("<h3 id='ticker' style='margin: 15px; font-size: 15px;'>Buy " + args[0] + "</h3>"));
+  $("#buyShares").append($("<h2 id='ticker'><strong>Buy " + args[0] + "</strong></h3>"));
   
   var divEl = $("<div style='display: flex; font-size: 13px;'></div>");
   var ulEl1 = $("<ul style='list-style: none; margin-bottom: 0px;'>");
-  var ulEl2 = $("<ul style='list-style: none; margin-bottom: 0px;'>");
-  ulEl1.append($("<li style='margin-bottom: 14px;'> Cash Balance Available: </li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Shares</li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Market Price</li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Estimated Cost: </li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Total Number of Shares Bought: </li>"));
   
-  ulEl2.append($("<li style='margin-bottom: 14px;'>US$" + args[2] + "</li>"));
-  ulEl2.append($("<li style='margin-bottom: 14px;'><input type='text' id='shares' placeholder='No.of Shares'></li>"));
-  ulEl2.append($("<li style='margin-bottom: 14px;' id='price'> US$" + args[1] +"</li>"));
-  var estCostEl = $("<li style='margin-bottom: 14px;'> US$"+ estimateCost + "</li>");
-  ulEl2.append(estCostEl);
+  ulEl1.append($("<li style='margin-bottom: 14px;'> Cash Balance Available:          US$" + args[2] + "</li>"));
+  ulEl1.append($("<li style='margin-bottom: 14px;'>Shares:  <input type='text' id='shares' placeholder='No.of Shares'></li>"));
+  ulEl1.append($("<li id='price' style='margin-bottom: 14px;'>Market Price            US$" + args[1] +"</li>"));
+  ulEl1.append($("<li id='costEl' style='margin-bottom: 14px;'>Estimated Cost:           US$"+ estimateCost + "</li>"));
+  ulEl1.append($("<li style='margin-bottom: 14px;'>Total Number of Shares Bought:      " + args[3] + "</li>"));
+  var estCostEl = $("costEl");
   $("#buyShares").on("input", '#shares',function(){
      estimateCost = Number($("#price").text().split('$')[1]) * Number($("#shares").val());
-    estCostEl.text("US$" + estimateCost);
+     estCostEl.text("US$" + estimateCost);
     
   });
  
-  ulEl2.append($("<li style='margin-bottom: 14px;'>" + args[3] + "</li>"));
   divEl.append(ulEl1);
-  divEl.append(ulEl2);
+  
   
   $("#buyShares").append(divEl);    
   $("#buyShares").append($("<button class='waves-effect waves-light btn' style='background-color: #bf360c' id='buyNow' type='button'>Buy Now!</button>"));
   $("#buyShares").append($("<button style='background-color: #ff8f00' class='waves-effect waves-light btn' id='sellNow' type='button'>Sell Now!</button>"));
 }
 
+//save info about shares bought per company
 var saveSharesBought = function(ticker,cashBal,numShares,price){
   sharesBought[ticker] = [numShares,price];
   sharesBought['cashBal'] = cashBal
@@ -270,26 +276,30 @@ var loadSharesBought =  function(ticker){
 
       sharesBought = {};
   }
-  if(sharesBought['cashBal']!== undefined){
+  console.log(sharesBought['cashBal']);
+  if(sharesBought['cashBal']!== undefined && sharesBought['cashBal'] !== null){
+    console.log(sharesBought['cashBal']);
     cashBal = sharesBought['cashBal'];
   }
   else{
     cashBal = 100000;
+    console.log(cashBal);
   }
-  if(sharesBought[ticker]!== undefined){
+  console.log(sharesBought[ticker]);
+  if(sharesBought[ticker]!== undefined && sharesBought[ticker] !== null){
     console.log(sharesBought);
     
     totalSharesBought = sharesBought[ticker][0];
   }
   else{
-    
+    console.log('here');
     totalSharesBought = 0;
   }
 
   return [cashBal,totalSharesBought];
 }
 
-
+//on clicking buy shares, user gets to buy shares and corresponding data is stored in local storage
 $("#buyShares").on('click','#buyNow',function(event){
  
   var numShares = Number($("#shares").val());
@@ -306,12 +316,14 @@ $("#buyShares").on('click','#buyNow',function(event){
   console.log(price);
   
   cashBal = cashBal - numShares * price;
-  $(".modal-body").text("Congratulations you bought " + numShares + " shares of " + ticker);
-  $("#myModal").modal();
+  $(".modal-header").css("background-color","green");
+  $(".modal-header > h2").text("Congratulations");
+  displayModal("You bought " + numShares + " shares of " + ticker);
   buyShares(ticker, price,cashBal,totalSharesBought);
   saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })
 
+//sell shares
 $("#buyShares").on('click','#sellNow',function(event){
  
 var numShares = Number($("#shares").val());
@@ -328,26 +340,31 @@ var price = Number($("#price").text().split('$')[1]);
 console.log(price);
 
 cashBal = cashBal + numShares * price;
-$(".modal-body").text("Congratulations you sold " + numShares + " shares of " + ticker);
-$("#myModal").modal();
+$(".modal-header > h2").text("Congratulations");
+$(".modal-header").css("background-color","green");
+displayModal("You sold " + numShares + " of " + ticker);
 buyShares(ticker, price,cashBal,totalSharesBought);
 saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })
 
-
+//main function that calls all display on the page
 var callBackFunc = function(allData){
   console.log(allData);
   $("#buyShares").show();
+  getCompanyLogo(allData['logo']);
   parsePriceDataWeekly(allData['weekly']);
   console.log(allData['daily']);
   getStockDataDay(allData['daily']);
   console.log(allData['logo']);
   getCompanyOverview(allData['company']);
-  getCompanyLogo(allData['logo']);
+  
   companyNews(allData['news']);
   getEarningReport(allData['earnings']);
 }
 
+//fetch functions
+
+//daily data
 var fetchWeekData = function(ticker){
   
   var apiKey = "YYN6L1UF6A17ZCV3";
@@ -371,6 +388,7 @@ var fetchWeekData = function(ticker){
   });
 }
 
+//weekly data
 var fetchDailyData = function(ticker){
   var apiKey = "YYN6L1UF6A17ZCV3";
   var apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="
@@ -390,6 +408,8 @@ var fetchDailyData = function(ticker){
   });
 }
 
+
+//company overview
 var fetchCompanyOverview = function(ticker){
   var apiKey = "YYN6L1UF6A17ZCV3";
   var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol="
@@ -408,6 +428,7 @@ var fetchCompanyOverview = function(ticker){
   })
 }
 
+//logo
 var fetchLogo = function(ticker){
   var authString = "&token=btcq48v48v6svpqla9fg";
   var apiUrl = "https://finnhub.io/api/v1/stock/profile2?symbol=" + ticker + authString;
@@ -425,6 +446,7 @@ var fetchLogo = function(ticker){
   })
 }
 
+//news
 var fetchNews = function(ticker){
   var apiURL = "https://gnews.io/api/v3/search?q=" + ticker + "&token=885961acd54fb270a6e9a791562c0f01";
   return fetch(apiURL).then(function(responseNews){
@@ -440,6 +462,7 @@ var fetchNews = function(ticker){
   });
 }
 
+//earnings report
 var fetchEarningsReport = function(ticker){
   var apiUrl = "https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=" + ticker + "&apikey=YYN6L1UF6A17ZCV3";
   return fetch(apiUrl).then(function(responseEarnings){
@@ -456,6 +479,7 @@ var fetchEarningsReport = function(ticker){
   });
 }
 
+//main fetch function calling all others(waits till all  data is fetched)
 var fetchFunction = async function(ticker,callBackFunc){
   
   var allData = {};
@@ -473,7 +497,7 @@ var fetchFunction = async function(ticker,callBackFunc){
 }
 
 
-
+//draw the charts
 var resize = function(chart_div,data,options){
   var chart = new google.visualization.LineChart(document.getElementById(chart_div));
   chart.draw(data,options);
@@ -481,11 +505,12 @@ var resize = function(chart_div,data,options){
 
 
 
-
+//main function calling fetch calling function
 var callDisplayFunc = function(ticker){
   fetchFunction(ticker,callBackFunc);
 }
 
+//search button
 $("#search-button").on('click',function(){
     var ticker = $("#search").val();
   
@@ -501,4 +526,8 @@ $("#search-button").on('click',function(){
     
 })
 
+//close modal
+$("#close-modal").on('click',function(){
+    $(".modal2").hide();
+})
 
