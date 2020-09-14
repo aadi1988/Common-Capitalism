@@ -91,7 +91,7 @@ function getStockDataDay (data){
               var totalSharesBought = arr[1];
               buyShares(data["Meta Data"]["2. Symbol"],currentPrice,cashBal,totalSharesBought);
               checkDivHasChildren($("#name-price"));
-              $("#name-price").append("<h2>" + currentPrice + "</h2>");
+              $("#name-price").append("<h2>$" + currentPrice + "</h2>");
               $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
         
 }
@@ -225,31 +225,25 @@ var buyShares = function(...args){
   checkDivHasChildren($("#buyShares"));
   console.log(args);
   var estimateCost = 0;
-  $("#buyShares").append($("<h3 id='ticker' style='margin: 15px; font-size: 15px;'>Buy " + args[0] + "</h3>"));
+  $("#buyShares").append($("<h2 id='ticker'><strong>Buy " + args[0] + "</strong></h3>"));
   
   var divEl = $("<div style='display: flex; font-size: 13px;'></div>");
   var ulEl1 = $("<ul style='list-style: none; margin-bottom: 0px;'>");
-  var ulEl2 = $("<ul style='list-style: none; margin-bottom: 0px;'>");
-  ulEl1.append($("<li style='margin-bottom: 14px;'> Cash Balance Available: </li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Shares</li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Market Price</li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Estimated Cost: </li>"));
-  ulEl1.append($("<li style='margin-bottom: 14px;'>Total Number of Shares Bought: </li>"));
   
-  ulEl2.append($("<li style='margin-bottom: 14px;'>US$" + args[2] + "</li>"));
-  ulEl2.append($("<li style='margin-bottom: 14px;'><input type='text' id='shares' placeholder='No.of Shares'></li>"));
-  ulEl2.append($("<li style='margin-bottom: 14px;' id='price'> US$" + args[1] +"</li>"));
-  var estCostEl = $("<li style='margin-bottom: 14px;'> US$"+ estimateCost + "</li>");
-  ulEl2.append(estCostEl);
+  ulEl1.append($("<li style='margin-bottom: 14px;'> Cash Balance Available:          US$" + args[2] + "</li>"));
+  ulEl1.append($("<li style='margin-bottom: 14px;'>Shares:  <input type='text' id='shares' placeholder='No.of Shares'></li>"));
+  ulEl1.append($("<li id='price' style='margin-bottom: 14px;'>Market Price            US$" + args[1] +"</li>"));
+  ulEl1.append($("<li id='costEl' style='margin-bottom: 14px;'>Estimated Cost:           US$"+ estimateCost + "</li>"));
+  ulEl1.append($("<li style='margin-bottom: 14px;'>Total Number of Shares Bought:      " + args[3] + "</li>"));
+  var estCostEl = $("costEl");
   $("#buyShares").on("input", '#shares',function(){
      estimateCost = Number($("#price").text().split('$')[1]) * Number($("#shares").val());
-    estCostEl.text("US$" + estimateCost);
+     estCostEl.text("US$" + estimateCost);
     
   });
  
-  ulEl2.append($("<li style='margin-bottom: 14px;'>" + args[3] + "</li>"));
   divEl.append(ulEl1);
-  divEl.append(ulEl2);
+  
   
   $("#buyShares").append(divEl);    
   $("#buyShares").append($("<button class='waves-effect waves-light btn' style='background-color: #bf360c' id='buyNow' type='button'>Buy Now!</button>"));
@@ -273,19 +267,23 @@ var loadSharesBought =  function(ticker){
 
       sharesBought = {};
   }
-  if(sharesBought['cashBal']!== undefined){
+  console.log(sharesBought['cashBal']);
+  if(sharesBought['cashBal']!== undefined && sharesBought['cashBal'] !== null){
+    console.log(sharesBought['cashBal']);
     cashBal = sharesBought['cashBal'];
   }
   else{
     cashBal = 100000;
+    console.log(cashBal);
   }
-  if(sharesBought[ticker]!== undefined){
+  console.log(sharesBought[ticker]);
+  if(sharesBought[ticker]!== undefined && sharesBought[ticker] !== null){
     console.log(sharesBought);
     
     totalSharesBought = sharesBought[ticker][0];
   }
   else{
-    
+    console.log('here');
     totalSharesBought = 0;
   }
 
