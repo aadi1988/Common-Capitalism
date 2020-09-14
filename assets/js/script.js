@@ -90,7 +90,8 @@ function getStockDataDay (data){
               var cashBal = arr[0];
               var totalSharesBought = arr[1];
               buyShares(data["Meta Data"]["2. Symbol"],currentPrice,cashBal,totalSharesBought);
-              checkDivHasChildren($("#name-price"));
+              
+              $("#logo").append("<div id='name-price'></div>");
               $("#name-price").append("<h2>$" + currentPrice + "</h2>");
               $("#name-price").append("<h2>" + data["Meta Data"]["2. Symbol"] + "</h2>");
         
@@ -341,12 +342,13 @@ saveSharesBought(ticker,cashBal,totalSharesBought,price);
 var callBackFunc = function(allData){
   console.log(allData);
   $("#buyShares").show();
+  getCompanyLogo(allData['logo']);
   parsePriceDataWeekly(allData['weekly']);
   console.log(allData['daily']);
   getStockDataDay(allData['daily']);
   console.log(allData['logo']);
   getCompanyOverview(allData['company']);
-  getCompanyLogo(allData['logo']);
+  
   companyNews(allData['news']);
   getEarningReport(allData['earnings']);
 }
