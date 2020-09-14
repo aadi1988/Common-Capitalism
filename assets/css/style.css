@@ -110,9 +110,9 @@ margin: 0 auto;
     display: flex;
 }
 
-#chart_div,#earningChart{
-    width: 800px;
-    height: 400px;
+#chart_div,#earnings{
+    width: 80%;
+    height: 500px;
 }
 
 #logo{

@@ -29,7 +29,8 @@ function drawChart(arr,xAxis,yAxis,chart_div,moneyFormat) {
   data.addRows(arr);
 
   var options = {
-    height: 350,
+    width: 500,
+    height: 400,
     hAxis: {
       title: xAxis,
       format: 'M/d/y'
@@ -158,7 +159,7 @@ function getCompanyLogo (data){
   
 
         checkDivHasChildren($("#logo"));
-        
+        checkDivHasChildren($("#subText"));
         var logoEl = $("<img></img>");
         $(logoEl).attr('src', data['logo']);
         $("#logo").append(logoEl);
