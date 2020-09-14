@@ -13,8 +13,11 @@ var checkDivHasChildren = function(div){
 }
 
 var displayModal = function(modalBody){
-   $(".modal-content").text(modalBody);
-   $("#modal1").modal();
+   //console.log($(".modal-content > p"));
+   $(".modal-body > p").text(modalBody);
+   //console.log($(".modal-content > p"));
+   $(".modal2").show();
+
 }
 
 // Draws the chart utilizing google charts
@@ -306,8 +309,9 @@ $("#buyShares").on('click','#buyNow',function(event){
   console.log(price);
   
   cashBal = cashBal - numShares * price;
-  $(".modal-body").text("Congratulations you bought " + numShares + " shares of " + ticker);
-  $("#myModal").modal();
+  $(".modal-header").css("background-color","green");
+  $(".modal-header > h2").text("Congratulations");
+  displayModal("You bought " + numShares + " shares of " + ticker);
   buyShares(ticker, price,cashBal,totalSharesBought);
   saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })
@@ -328,8 +332,9 @@ var price = Number($("#price").text().split('$')[1]);
 console.log(price);
 
 cashBal = cashBal + numShares * price;
-$(".modal-body").text("Congratulations you sold " + numShares + " shares of " + ticker);
-$("#myModal").modal();
+$(".modal-header > h2").text("Congratulations");
+$(".modal-header").css("background-color","green");
+displayModal("You sold " + numShares + " of " + ticker);
 buyShares(ticker, price,cashBal,totalSharesBought);
 saveSharesBought(ticker,cashBal,totalSharesBought,price);
 })
@@ -501,4 +506,7 @@ $("#search-button").on('click',function(){
     
 })
 
+$("#close-modal").on('click',function(){
+    $(".modal2").hide();
+})
 
