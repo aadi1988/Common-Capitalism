@@ -97,7 +97,7 @@ function getCompanyOverview (data){
             checkDivHasChildren($(".about-span"));
             $(".about-span").append("<h2 id='aboutCompany'></h2>");
             $(".about-span").append("<hr>");
-            $(".about-span").append("<p id='companyDesc' style='width: 800px; margin-top: 30px; font-size: 15px;'></p>");
+            $(".about-span").append("<p id='companyDesc' style='margin-top: 30px; font-size: 15px;'></p>");
             $("#aboutCompany").text(data.Name);
             $("#companyDesc").text(data.Description);
             $(".about-span").append($("#aboutCompany"));
